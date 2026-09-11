@@ -1,4 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portal administrativo de Altaria
+
+## Acceso local
+
+- Portal: http://localhost:3000
+- API: http://localhost:8080
+- Swagger: http://localhost:8080/swagger/index.html
+
+Las variables sensibles se configuran en `Altaria.API/.env`; no deben escribirse en este README.
+El frontend usa el proxy `/api` y la cookie de sesion HttpOnly. Consulta [Docs/06-despliegue.md](Docs/06-despliegue.md).
+
+## Flujo operativo
+
+1. Iniciar sesión en el portal.
+2. Abrir `Fabricar stock`.
+3. Introducir el rango, por ejemplo `001` a `050`.
+4. Descargar el ZIP con los PNG individuales.
+5. Imprimir los QR. Cada uno apunta a `/r/{serial}`.
+6. Escanear el QR de un display disponible.
+7. Introducir nombre del local y URL de Google Reviews; el QR identifica automaticamente el display.
+8. En `Locales`, asignar displays adicionales a un local ya existente si es necesario.
+9. Revisar el inventario desde `Resumen`.
+
+Un display disponible lleva al flujo de activación. Uno activo redirige a Google Reviews. Los displays desactivados quedan bloqueados.
 
 ## Getting Started
 
