@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { ArrowRight, CheckCircle2, Search, Store, Wifi } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.altariaa.com";
 type Business = { id: number; name: string; googleReviewUrl: string };
 
 type Mode = "existing" | "new";
