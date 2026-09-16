@@ -109,7 +109,7 @@ export default function LandingPage() {
           <p className="alt-eyebrow alt-enter">PRESENCIA QUE SE QUEDA EN LA MEMORIA</p>
           <h1 id="hero-title" className="alt-enter alt-delay-1">Tu negocio, <em>imposible</em> de ignorar.</h1>
           <p className="alt-hero-description alt-enter alt-delay-2">
-            Displays inteligentes con QR y NFC que convierten cada visita en una reseña, una conversación y una nueva oportunidad.
+            Una presencia moderna y sofisticada que eleva la imagen de tu negocio y lo diferencia en cada espacio.
           </p>
           <div className="alt-hero-actions alt-enter alt-delay-3">
             <a className="alt-button alt-button-dark" href="#contacto">Quiero mi display <ArrowRight size={17} /></a>
@@ -132,7 +132,7 @@ export default function LandingPage() {
             <QrCode />
             <div className="alt-display-bottom"><Wifi size={13} /> Acerca tu teléfono o escanea</div>
           </div>
-          <div className="alt-float-card alt-float-card-top"><span className="alt-pulse-dot" /> Experiencia premium</div>
+          {/* <div className="alt-float-card alt-float-card-top"><span className="alt-pulse-dot" /> Experiencia premium</div> */}
           <div className="alt-float-card alt-float-card-bottom"><ScanLine size={16} /><span><strong>Un solo gesto.</strong><small>Una conexión real.</small></span></div>
         </div>
       </section>
@@ -161,8 +161,8 @@ export default function LandingPage() {
           <article className="alt-solution-card alt-reveal alt-reveal-delay-2">
             <div className="alt-icon-wrap"><Store size={22} /></div>
             <span className="alt-card-number">03</span>
-            <h3>Siempre bajo control</h3>
-            <p>Configura la experiencia de cada local desde un espacio administrativo claro.</p>
+            <h3>Haz que tus clientes te encuentren y te recomienden</h3>
+            <p>Convierte cada mesa, mostrador o punto de atención en una oportunidad para recibir más reseñas y conectar con tus clientes.</p>
             <span className="alt-card-line" />
           </article>
         </div>
