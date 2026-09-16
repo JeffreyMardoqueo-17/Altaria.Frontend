@@ -69,7 +69,7 @@ type AdminSection =
   | "stock";
 
 const statusLabels = ["Disponible", "Activo", "Desactivado"];
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.altariaa.com";
 async function api<T>(path: string, options: RequestInit = {}) {
   const response = await fetch(path, {
     ...options,
@@ -96,12 +96,11 @@ export default function AdminClient({
   const [email, setEmail] = useState("admin@altariaa.com");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-
   async function login(event: FormEvent) {
     event.preventDefault();
     setLoginError("");
     try {
-      await api("/api/auth/login", {
+      await api(`${API_URL}/api/auth/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
