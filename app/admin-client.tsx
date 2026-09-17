@@ -121,7 +121,8 @@ export default function AdminClient({
     event.preventDefault();
     setLoginError("");
     try {
-      await api(`${API_URL}/api/auth/login`, {
+      // solo pasa la ruta relativa, sin el ${API_URL}
+      await api("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
