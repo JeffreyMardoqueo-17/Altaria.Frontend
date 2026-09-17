@@ -8,8 +8,8 @@ import {
   LoaderCircle,
   Store,
 } from "lucide-react";
+import { apiClient } from "@/lib/api";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.altariaa.com";
 type Display = {
   serialCode: string;
   status: 0 | 1 | 2;
@@ -24,22 +24,23 @@ export default function PublicDisplayPage({
   const [display, setDisplay] = useState<Display | null>(null);
   const [serialCode, setSerialCode] = useState(initialSerialCode);
   const [error, setError] = useState("");
+
   useEffect(() => {
     if (!initialSerialCode)
       setSerialCode(
         new URLSearchParams(window.location.search).get("serialCode") ?? "",
       );
   }, [initialSerialCode]);
+
   useEffect(() => {
     if (!serialCode) return;
-    fetch(`${API_URL}/api/displays/${encodeURIComponent(serialCode)}`)
-      .then(async (response) => {
-        if (!response.ok) throw new Error();
-        return response.json();
-      })
+
+    // Usamos apiClient pasándole el tipo de dato <Display> esperado
+    apiClient<Display>(`/api/displays/${encodeURIComponent(serialCode)}`)
       .then(setDisplay)
       .catch(() => setError("No encontramos este display."));
   }, [serialCode]);
+
   if (error)
     return (
       <main className="public-shell">
@@ -55,6 +56,7 @@ export default function PublicDisplayPage({
         </section>
       </main>
     );
+
   if (!display)
     return (
       <main className="public-shell">
@@ -64,6 +66,7 @@ export default function PublicDisplayPage({
         </section>
       </main>
     );
+
   if (display.status === 0)
     return (
       <main className="public-shell">
@@ -86,6 +89,7 @@ export default function PublicDisplayPage({
         </section>
       </main>
     );
+
   if (display.status === 2)
     return (
       <main className="public-shell">
@@ -99,6 +103,7 @@ export default function PublicDisplayPage({
         </section>
       </main>
     );
+
   return (
     <main className="public-shell">
       <section className="public-card active-display">

@@ -69,20 +69,41 @@ type AdminSection =
   | "stock";
 
 const statusLabels = ["Disponible", "Activo", "Desactivado"];
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.altariaa.com";
-async function api<T>(path: string, options: RequestInit = {}) {
-  const response = await fetch(path, {
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+async function api<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const isFormData = options.body instanceof FormData;
+
+  const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     credentials: "include",
-    headers: { "Content-Type": "application/json", ...options.headers },
+    headers: {
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
+      ...options.headers,
+    },
   });
 
-  if (!response.ok)
-    throw new Error((await response.text()) || `Error ${response.status}`);
+  if (!response.ok) {
+    let errorData;
+    try {
+      errorData = await response.json();
+    } catch {
+      errorData = { message: response.statusText };
+    }
+    throw new Error(
+      errorData.message || `Error en la petición: ${response.status}`,
+    );
+  }
+
+  // Respuestas sin contenido (204 No Content)
+  if (response.status === 204) {
+    return {} as T;
+  }
+
   const contentType = response.headers.get("content-type") ?? "";
   return contentType.includes("application/json")
     ? (response.json() as Promise<T>)
-    : (response as T);
+    : (response as unknown as T);
 }
 
 export default function AdminClient({
