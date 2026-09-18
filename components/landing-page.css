@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .alt-landing {
   --alt-coffee: #4a2e21;
   --alt-coffee-deep: #2c1710;
@@ -63,10 +66,11 @@
   text-decoration: none;
 }
 .alt-brand-mark {
-  width: 35px;
-  height: 35px;
-  color: var(--alt-coffee);
+  width: 150;
+  height: 50px;
+  color: var(--alt-paper);
 }
+
 .alt-brand > span {
   display: grid;
   gap: 3px;
@@ -399,48 +403,147 @@
   color: #dec09f;
   font-style: italic;
 }
-.alt-qr {
+
+/* Container adjustment */
+.alt-hero-art {
   position: relative;
-  z-index: 1;
-  width: 105px;
-  height: 105px;
+  width: 100%;
+  max-width: 420px;
+  min-height: 520px;
   margin: 0 auto;
-  background:
-    repeating-linear-gradient(90deg, #f8eee2 0 5px, transparent 5px 8px),
-    repeating-linear-gradient(#f8eee2 0 5px, transparent 5px 9px), #4a2e21;
-  box-shadow: inset 0 0 0 7px #f8eee2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.alt-qr::before {
+
+/* Acrílico Display */
+.alt-display {
+  position: relative;
+  z-index: 2;
+  width: 280px;
+  background-color: #4a2e21;
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 24px 20px 18px 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(220, 201, 179, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alt-display-header {
+  width: 100%;
+}
+
+.alt-display-subtitle {
+  font-size: 0.78rem;
+  color: #dcc9b3;
+  margin: 0 0 2px 0;
+}
+
+.alt-display-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+
+.alt-google-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.alt-display-stars {
+  color: #f4b400;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+/* QR Container */
+.alt-qr-container {
+  width: 120px !important;
+  height: 120px !important;
+  margin: 0 auto 12px auto !important;
+}
+
+/* Logo Altaria Centrado */
+.alt-brand-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.logo-qr {
+  display: block;
+  height: auto;
+  max-width: 110px;
+  color: #ffffff;
+  fill: currentColor;
+}
+
+/* NFC Footer */
+.alt-display-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 1px solid rgba(220, 201, 179, 0.2);
+  padding-top: 12px;
+}
+
+.alt-nfc-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.alt-nfc-text {
+  text-align: left;
+}
+
+.alt-nfc-text strong {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.alt-nfc-text small {
+  display: block;
+  font-size: 0.6rem;
+  color: #dcc9b3;
+}
+
+/* Floating Card Base */
+.alt-float-card-bottom {
   position: absolute;
-  top: 19px;
-  left: 20px;
-  width: 40px;
-  height: 22px;
-  background: #4a2e21;
-  content: "";
-  box-shadow:
-    18px 34px 0 #4a2e21,
-    43px 21px 0 -4px #4a2e21;
+  bottom: 10px;
+  left: -20px;
+  z-index: 3;
 }
-.alt-qr i {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border: 5px solid #f8eee2;
-  background: #4a2e21;
-}
-.alt-qr i:nth-child(1) {
-  top: 7px;
-  left: 7px;
-}
-.alt-qr i:nth-child(2) {
-  top: 7px;
-  right: 7px;
-}
-.alt-qr i:nth-child(3) {
-  bottom: 7px;
-  left: 7px;
-}
+
+
 .alt-display-bottom {
   position: relative;
   z-index: 1;
@@ -595,23 +698,35 @@
 
 .alt-process {
   display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  gap: clamp(45px, 8vw, 135px);
+  grid-template-columns: 1fr 1fr; /* Dividido 50% / 50% */
+  gap: clamp(30px, 5vw, 60px);
+  align-items: center;
   padding: 116px max(32px, calc((100% - 1176px) / 2));
   overflow: hidden;
   background: var(--alt-coffee);
   color: #fffaf3;
 }
+
+/* Lado Izquierdo */
+.alt-process-content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
 .alt-process .alt-eyebrow {
   color: #ddc4a8;
 }
+
 .alt-process h2 {
   max-width: 390px;
-  font-size: clamp(43px, 4.4vw, 63px);
+  font-size: clamp(36px, 3.8vw, 54px);
 }
+
 .alt-process h2 em {
   color: #dec19f;
 }
+
 .alt-process-intro > p:not(.alt-eyebrow) {
   max-width: 330px;
   margin: 23px 0 33px;
@@ -619,20 +734,24 @@
   font-size: 14px;
   line-height: 1.75;
 }
+
 .alt-text-link-light {
   border-color: rgba(255, 250, 243, 0.4);
   color: #fffaf3;
 }
+
 .alt-text-link-light:hover {
   border-color: #fffaf3;
 }
+
 .alt-process-flow {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 16px;
   padding-top: 19px;
 }
+
 .alt-flow-line {
   position: absolute;
   top: 35px;
@@ -646,42 +765,81 @@
     rgba(222, 193, 159, 0.15)
   );
 }
+
 .alt-process-flow article {
   position: relative;
   z-index: 1;
   padding: 0 4px;
 }
+
 .alt-process-flow svg {
   display: grid;
-  width: 49px;
-  height: 49px;
-  padding: 13px;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
   place-items: center;
   border: 1px solid rgba(222, 193, 159, 0.38);
   border-radius: 50%;
   background: var(--alt-coffee);
   color: #dec19f;
 }
+
 .alt-step {
   display: block;
-  margin: 0 0 29px;
+  margin: 0 0 20px;
   color: #dec19f;
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.15em;
 }
+
 .alt-process-flow h3 {
-  margin: 24px 0 10px;
+  margin: 16px 0 8px;
   font-family: var(--font-heading), Georgia, serif;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: -0.03em;
 }
+
 .alt-process-flow p {
   margin: 0;
   color: #d4ba9e;
   font-size: 12px;
-  line-height: 1.68;
+  line-height: 1.5;
+}
+
+/* Lado Derecho - Imagen */
+.alt-process-media {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alt-process-image {
+  width: 50%;
+  max-width: 250px;
+  height: auto;
+  max-height: 550px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(222, 193, 159, 0.2);
+}
+
+/* Responsivo para móviles */
+@media (max-width: 992px) {
+  .alt-process {
+    grid-template-columns: 1fr;
+    padding: 64px 24px;
+  }
+
+  .alt-process-media {
+    min-height: auto;
+    margin-top: 32px;
+  }
 }
 
 .alt-start {
@@ -861,8 +1019,8 @@
   padding: 25px 32px;
 }
 .alt-footer-brand .alt-brand-mark {
-  width: 30px;
-  height: 30px;
+  width: 150px;
+  height: 150px;
 }
 .alt-footer-brand strong {
   font-size: 12px;
@@ -1078,8 +1236,8 @@
     padding: 0 10px;
   }
   .alt-brand-mark {
-    width: 31px;
-    height: 31px;
+    width: 150px;
+    height: 150px;
   }
   .alt-brand strong {
     font-size: 12px;

@@ -1,0 +1,224 @@
+/* Importamos la herencia global de fuentes */
+.alt-testimonials-section {
+  position: relative;
+  padding: 90px 20px;
+  background-color: #F8F3EA; /* Crema Suave */
+  overflow: hidden;
+  text-align: center;
+  font-family: inherit;
+}
+
+/* Header */
+.alt-testimonials-header {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+.alt-testimonials-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  font-size: 5.5rem;
+  font-weight: 800;
+  color: rgba(74, 46, 33, 0.04);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  font-family: inherit;
+}
+
+.alt-testimonials-header .alt-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 2.5px;
+  color: #4A2E21; /* Café Profundo */
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+/* Título con Serif Elegante */
+.alt-testimonials-header h2 {
+  font-size: 2.6rem;
+  color: #4A2E21;
+  font-weight: 400; /* Tipografía serif de alta gama */
+  font-family: "Playfair Display", "DM Serif Display", Georgia, serif;
+  position: relative;
+  z-index: 1;
+  line-height: 1.2;
+}
+
+/* Slider Track & Container */
+.alt-slider-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alt-slider-track-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.alt-slider-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Cards */
+.alt-testimonial-card {
+  min-width: 340px;
+  max-width: 340px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 32px 26px;
+  box-shadow: 0 10px 25px rgba(74, 46, 33, 0.03);
+  border: 1px solid #DCC9B3;
+  opacity: 0.45;
+  transform: scale(0.88);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.alt-testimonial-card.active {
+  opacity: 1;
+  transform: scale(1.06);
+  box-shadow: 0 20px 45px rgba(74, 46, 33, 0.08);
+  border-color: rgba(74, 46, 33, 0.25);
+  z-index: 2;
+}
+
+/* Avatar y Nombre */
+.alt-card-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.alt-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #DCC9B3;
+}
+
+/* Nombre con la misma tipografía Serif */
+.alt-user-info h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #4A2E21;
+  text-align: left;
+  font-family: "Playfair Display", "DM Serif Display", Georgia, serif;
+}
+
+.alt-user-info p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: #9EA3A8;
+  text-align: left;
+  font-family: inherit;
+}
+
+/* Estrellas */
+.alt-card-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.star-filled {
+  color: #4A2E21;
+  fill: #4A2E21;
+}
+
+.star-empty {
+  color: #DCC9B3;
+}
+
+/* Comentario */
+.alt-card-comment {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #4A2E21;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+/* Botones y Navegación */
+.alt-slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #FFFFFF;
+  border: 1px solid #DCC9B3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 46, 33, 0.06);
+  transition: all 0.2s ease;
+  z-index: 10;
+  color: #4A2E21;
+}
+
+.alt-slider-arrow:hover {
+  background: #4A2E21;
+  color: #FFFFFF;
+  border-color: #4A2E21;
+}
+
+.alt-arrow-left {
+  left: 10px;
+}
+
+.alt-arrow-right {
+  right: 10px;
+}
+
+.alt-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.alt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #DCC9B3;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alt-dot.active {
+  background: #4A2E21;
+  transform: scale(1.4);
+}
+
+@media (max-width: 768px) {
+  .alt-testimonials-header h2 {
+    font-size: 2rem;
+  }
+}
