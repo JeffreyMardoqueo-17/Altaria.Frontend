@@ -6,10 +6,17 @@ import { ArrowLeft, Maximize2, X, Check } from "lucide-react";
 import "./OrdenSection.css";
 
 const productGallery = [
-  { id: 1, url: "/imgs/ejemplo.jpeg", alt: "Display Altaria" },
-  { id: 2, url: "/imgs/masespecificaciones.jpeg", alt: "Detalle Acabado" },
-  { id: 3, url: "/imgs/especidficiaciones.jpeg", alt: "Uso NFC" },
-  { id: 4, url: "/imgs/sola.jpeg", alt: "Vista Perspectiva" },
+  { id: 1, url: "/imgs/blanca-1.jpeg", alt: "Display Altaria" },
+  { id: 2, url: "/imgs/blanca-2.jpeg", alt: "Detalle Acabado" },
+  { id: 3, url: "/imgs/blanca-3.jpeg", alt: "Uso NFC" },
+  { id: 4, url: "/imgs/blanca-4.jpeg", alt: "Vista Perspectiva" },
+  
+  { id:5, url: "/imgs/blanca-5.jpeg", alt: "Vista Perspectiva" },
+  
+  { id: 6, url: "/imgs/blanca-6.jpeg", alt: "Vista Perspectiva" },
+  
+  { id: 7, url: "/imgs/blanca-7.jpeg", alt: "Vista Perspectiva" },
+
 ];
 
 interface Option {

@@ -426,7 +426,7 @@ export default function LandingPage() {
             {/* Tarjeta / Foto Principal */}
             <div className="alt-collage-card alt-card-main">
               <img
-                src="/imgs/ejemplo.jpeg"
+                src="/imgs/blanca-1.jpeg"
                 alt="Display Altaria Principal"
                 className="alt-collage-img"
               />
@@ -435,7 +435,7 @@ export default function LandingPage() {
             {/* Tarjeta / Foto Secundaria (Superpuesta) */}
             <div className="alt-collage-card alt-card-secondary">
               <img
-                src="/imgs/masespecificaciones.jpeg"
+                src="/imgs/blanca-2.jpeg"
                 alt="Display en entorno real"
                 className="alt-collage-img"
               />
@@ -444,7 +444,7 @@ export default function LandingPage() {
             {/* Tarjeta Detalle / Accent */}
             <div className="alt-collage-card alt-card-tertiary">
               <img
-                src="/imgs/sola.jpeg"
+                src="/imgs/blanca-3.jpeg"
                 alt="Detalle de acabado y NFC"
                 className="alt-collage-img"
               />
