@@ -19,8 +19,8 @@ import {
   Wifi,
   X,
 } from "lucide-react";
-
-const whatsappUrl = "https://wa.me/50369842090";
+const whatsappUrl = "https://wa.me/50369842090?text=" + encodeURIComponent("Hola Altaria, me gustaría realizar un pedido y conocer las opciones disponibles.");
+import { AltariaLogo } from "./ui/AltariaLogo";
 import React from "react";
 
 interface AltariaLogoProps {
@@ -44,37 +44,37 @@ export function AltariaMark({ className = "", height = 28 }: AltariaLogoProps) {
       {/* A (V al revés, sin trazo central) */}
       <path
         d="M 0 44 L 20 4 H 28 L 48 44 H 36 L 24 18 L 12 44 H 0 Z"
-        fill="currentColor"
+        fill="#4a2e21"
       />
 
       {/* L */}
-      <path d="M 60 4 H 72 V 34 H 96 V 44 H 60 V 4 Z" fill="currentColor" />
+      <path d="M 60 4 H 72 V 34 H 96 V 44 H 60 V 4 Z" fill="#4a2e21" />
 
       {/* T */}
       <path
         d="M 104 4 H 148 V 14 H 132 V 44 H 120 V 14 H 104 V 4 Z"
-        fill="currentColor"
+        fill="#4a2e21"
       />
 
       {/* A (V al revés, sin trazo central) */}
       <path
         d="M 156 44 L 176 4 H 184 L 204 44 H 192 L 180 18 L 168 44 H 156 Z"
-        fill="currentColor"
+        fill="#4a2e21"
       />
 
       {/* R */}
       <path
         d="M 216 4 H 244 C 254 4 260 9 260 17 C 260 23 255 27 247 28 L 261 44 H 247 L 235 29 H 228 V 44 H 216 V 4 Z M 228 13 V 20 H 242 C 246 20 248 18 248 16.5 C 248 15 246 13 242 13 H 228 Z"
-        fill="currentColor"
+        fill="#4a2e21"
       />
 
       {/* I */}
-      <path d="M 272 4 H 284 V 44 H 272 V 4 Z" fill="currentColor" />
+      <path d="M 272 4 H 284 V 44 H 272 V 4 Z" fill="#4a2e21" />
 
       {/* A (V al revés, sin trazo central) */}
       <path
         d="M 296 44 L 316 4 H 324 L 344 44 H 332 L 320 18 L 308 44 H 296 Z"
-        fill="currentColor"
+        fill="#4a2e21"
       />
     </svg>
   );
@@ -156,11 +156,11 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="landing-page alt-landing">
+ <main className="landing-page alt-landing">
       <div className={`alt-nav-shell ${isScrolled ? "is-scrolled" : ""}`}>
         <header className="alt-nav">
           <Link href="/" className="alt-brand" aria-label="Altaria, inicio">
-            <AltariaMark className="alt-brand-mark" />
+            <AltariaLogo className="alt-brand-mark" color="#4a2e21" />
             <span></span>
           </Link>
 
@@ -169,39 +169,38 @@ export default function LandingPage() {
             aria-label="Navegación principal"
           >
             <a
-              href="#soluciones"
-              onClick={(e) => handleSmoothScroll(e, "soluciones")}
-            >
-              Soluciones
-            </a>
-            <a
               href="#como-funciona"
               onClick={(e) => handleSmoothScroll(e, "como-funciona")}
             >
               Cómo funciona
             </a>
             <a
-              href="#altaria-start"
-              onClick={(e) => handleSmoothScroll(e, "altaria-start")}
+              href="#soluciones"
+              onClick={(e) => handleSmoothScroll(e, "soluciones")}
             >
-              Altaria Start
+              El producto
             </a>
             <a
-              href="#contacto"
-              onClick={(e) => handleSmoothScroll(e, "contacto")}
+              href="#testimonios"
+              onClick={(e) => handleSmoothScroll(e, "testimonios")}
             >
-              Contacto
+              Reseñas
+            </a>
+            <a
+              href="/orden"
+            >
+              Ordenar
             </a>
           </nav>
 
           <div className="alt-nav-actions">
             <a
               className="alt-nav-cta"
-              href={whatsappUrl}
+              href="/orden"
               target="_blank"
               rel="noreferrer"
             >
-              Hablemos <ArrowRight size={15} />
+              Ordenar por WhatsApp <ArrowRight size={15} />
             </a>
             <button
               className="alt-menu-button"
@@ -224,28 +223,29 @@ export default function LandingPage() {
           transition={{ staggerChildren: 0.15 }}
         >
           <motion.p variants={fadeInUp} className="alt-eyebrow">
-            Las reseñas hacen crecer tu negocio.
+            MÁS RESEÑAS, MÁS CLIENTES
           </motion.p>
           <motion.h1 id="hero-title" variants={fadeInUp}>
             Haz tu negocio <em>imposible</em> de olvidar.
           </motion.h1>
           <motion.p variants={fadeInUp} className="alt-hero-description">
-            Reseñas que hacen crecer tu negocio.
+            Convierte la satisfacción de tus clientes en valor real con exhibidores inteligentes que impulsan tu reputación digital.
           </motion.p>
           <motion.div variants={fadeInUp} className="alt-hero-actions">
             <a
               className="alt-button alt-button-dark"
-              href="#contacto"
-              onClick={(e) => handleSmoothScroll(e, "contacto")}
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
             >
               Ordenar por WhatsApp <ArrowRight size={17} />
             </a>
             <a
               className="alt-text-link"
-              href="#como-funciona"
-              onClick={(e) => handleSmoothScroll(e, "como-funciona")}
+              href="/orden"
+              // onClick={(e) => handleSmoothScroll(e, "contacto")}
             >
-              Descubre cómo funciona <span>↓</span>
+              Realizar pedido <span>↓</span>
             </a>
           </motion.div>
           <motion.div variants={fadeInUp} className="alt-hero-trust">
@@ -253,7 +253,7 @@ export default function LandingPage() {
               <ShieldCheck size={16} /> QR único y permanente
             </span>
             <span>
-              <Nfc size={16} /> Tecnología NFC
+              <Nfc size={16} /> Tecnología NFC integrada
             </span>
           </motion.div>
         </motion.div>
@@ -310,7 +310,7 @@ export default function LandingPage() {
 
             {/* Logo Altaria Centrado */}
             <div className="alt-brand-container">
-              <AltariaMark className="logo-qr" />
+              <AltariaLogo className="logo-qr" color="#d7c5ae" />
             </div>
 
             {/* NFC section */}
@@ -325,67 +325,20 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-
-          {/* Floating card inferior */}
-          {/* <div className="alt-float-card alt-float-card-bottom">
-            <ScanLine size={16} />
-            <span>
-              <strong>Un solo gesto.</strong>
-              <small>Una conexión real.</small>
-            </span>
-          </div> */}
         </motion.div>
       </section>
 
-      {/* Sección 01 - Oscura */}
-      {/* <section className="alt-brand-banner alt-brand-banner-dark alt-reveal">
-        <span className="alt-banner-number">01</span>
-        <div className="alt-banner-content">
-          <div className="alt-banner-brand">
-            <AltariaMark className="alt-banner-mark-svg" />
-            <span className="alt-banner-brand-text">ALTARIA</span>
-          </div>
-          <div className="alt-banner-divider" />
-          <div className="alt-banner-text">
-            <h2>
-              Donde las marcas <em>toman presencia.</em>
-            </h2>
-            <span className="alt-mini-line" />
-          </div>
-        </div>
-      </section> */}
-
-      {/* Sección 02 - Clara */}
-      {/* <section className="alt-brand-banner alt-brand-banner-light alt-reveal">
-        <span className="alt-banner-number">02</span>
-        <div className="alt-banner-content">
-          <div className="alt-banner-text">
-            <h2>
-              Haz que tu marca sea <em>imposible de ignorar.</em>
-            </h2>
-            <span className="alt-mini-line" />
-          </div>
-
-          <div className="alt-banner-divider" />
-          <div className="alt-banner-brand">
-            <AltariaMark className="alt-banner-mark-svg" />
-            <span className="alt-banner-brand-text">ALTARIA</span>
-          </div>
-        </div>
-      </section> */}
-
       <section id="soluciones" className="alt-section alt-solutions">
         <div className="alt-section-heading alt-reveal">
-          <p className="alt-eyebrow">HECHO PARA CONECTAR</p>
+          <p className="alt-eyebrow">EL PRODUCTO</p>
           <h2>
             Una pequeña pieza.
             <br />
             <em>Una gran impresión.</em>
           </h2>
-          <p>
-            Altaria reúne diseño, tecnología y una ruta simple para que pedir
-            una reseña se sienta natural.
-          </p>
+          {/* <p>
+            Altaria reúne diseño premium, tecnología de aproximación y una ruta simple para que pedir una reseña sea inmediato.
+          </p> */}
         </div>
         <div className="alt-solution-grid">
           <article className="alt-solution-card alt-reveal">
@@ -395,8 +348,7 @@ export default function LandingPage() {
             <span className="alt-card-number">01</span>
             <h3>Diseño que habla de ti</h3>
             <p>
-              Una pieza sobria y memorable que eleva cada mesa, recepción o
-              mostrador.
+              Una pieza sobria y memorable que eleva la estética de cada mesa, recepción o mostrador.
             </p>
             <span className="alt-card-line" />
           </article>
@@ -407,8 +359,7 @@ export default function LandingPage() {
             <span className="alt-card-number">02</span>
             <h3>Un toque y listo</h3>
             <p>
-              QR y NFC para que cada persona elija la forma más cómoda de
-              conectarse.
+              Integración de QR y NFC para que cada cliente elija la forma más veloz de opinar.
             </p>
             <span className="alt-card-line" />
           </article>
@@ -417,10 +368,9 @@ export default function LandingPage() {
               <Store size={22} />
             </div>
             <span className="alt-card-number">03</span>
-            <h3>Haz que tus clientes te encuentren y te recomienden</h3>
+            <h3>Conecta y crece</h3>
             <p>
-              Convierte cada mesa, mostrador o punto de atención en una
-              oportunidad para recibir más reseñas y conectar con tus clientes.
+              Transforma tu punto de atención en un canal activo para captar comentarios de 5 estrellas de forma constante.
             </p>
             <span className="alt-card-line" />
           </article>
@@ -428,7 +378,7 @@ export default function LandingPage() {
       </section>
 
       <section id="como-funciona" className="alt-process">
-        {/* Lado Izquierdo: Contenido y Pasos */}
+        {/* LADO IZQUIERDO: Contenido y Pasos */}
         <div className="alt-process-content">
           <div className="alt-process-intro alt-reveal">
             <p className="alt-eyebrow">ASÍ DE FÁCIL</p>
@@ -436,15 +386,14 @@ export default function LandingPage() {
               De una visita a una <em>conexión.</em>
             </h2>
             <p>
-              Una experiencia intuitiva para tus clientes y valiosa para tu
-              negocio.
+              Una interacción intuitiva para tus clientes y de alto impacto para tu negocio.
             </p>
             <a
               className="alt-text-link alt-text-link-light"
-              href="#contacto"
-              onClick={(e) => handleSmoothScroll(e, "contacto")}
+              href="/orden"
+              // onClick={(e) => handleSmoothScroll(e, "contacto")}
             >
-              Conocer Altaria <ArrowRight size={16} />
+              Realizar pedido <ArrowRight size={16} />
             </a>
           </div>
 
@@ -454,66 +403,96 @@ export default function LandingPage() {
               <span className="alt-step">01</span>
               <MousePointer2 size={21} />
               <h3>Acerca o escanea</h3>
-              <p>Tu cliente usa el QR o NFC del display.</p>
+              <p>El cliente aproxima su smartphone o apunta al código.</p>
             </article>
             <article>
               <span className="alt-step">02</span>
               <Store size={21} />
-              <h3>Llega a tu espacio</h3>
-              <p>Una ruta única, configurada para tu local.</p>
+              <h3>Apertura directa</h3>
+              <p>Abre de inmediato tu perfil configurado de reseñas.</p>
             </article>
             <article>
               <span className="alt-step">03</span>
               <Sparkles size={21} />
               <h3>Deja huella</h3>
-              <p>Una interacción sencilla que sí se recuerda.</p>
+              <p>Calificación completada en cuestión de segundos.</p>
             </article>
           </div>
         </div>
 
-        {/* Lado Derecho: Fotografía del Producto */}
+        {/* LADO DERECHO: Collage de Productos Elegante */}
         <div className="alt-process-media alt-reveal alt-reveal-delay-2">
-          <img
-            src="/imgs/ejemplo.jpeg" /* Cambia esta ruta por la foto oficial de tu producto */
-            alt="Display Altaria en funcionamiento"
-            className="alt-process-image"
-          />
+          <div className="alt-collage-container">
+            {/* Tarjeta / Foto Principal */}
+            <div className="alt-collage-card alt-card-main">
+              <img
+                src="/imgs/ejemplo.jpeg"
+                alt="Display Altaria Principal"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Tarjeta / Foto Secundaria (Superpuesta) */}
+            <div className="alt-collage-card alt-card-secondary">
+              <img
+                src="/imgs/masespecificaciones.jpeg"
+                alt="Display en entorno real"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Tarjeta Detalle / Accent */}
+            <div className="alt-collage-card alt-card-tertiary">
+              <img
+                src="/imgs/sola.jpeg"
+                alt="Detalle de acabado y NFC"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Sombra de ambiente sutil para dar profundidad */}
+            <div className="alt-collage-glow" />
+          </div>
         </div>
       </section>
-      <TestimonialsSection autoPlayInterval={4000} />
+
+      <div id="testimonios">
+        <TestimonialsSection autoPlayInterval={4000} />
+      </div>
 
       <section id="contacto" className="alt-contact alt-reveal">
-        <div className="alt-contact-decor">A</div>
+        {/* <div className="alt-contact-decor">A</div> */}
         <div>
-          <p className="alt-eyebrow">HABLEMOS DE TU NEGOCIO</p>
+          <p className="alt-eyebrow">ORDENAR</p>
           <h2>
             Las grandes experiencias <em>empiezan cerca.</em>
           </h2>
           <p>
-            Cuéntanos qué quieres lograr y encontramos la mejor forma de
-            conectar con tus clientes.
+            Elige la cantidad de piezas para tu local, revisa los detalles comerciales y completa tu pedido directamente.
           </p>
         </div>
         <a
           className="alt-button alt-button-cream"
-          href={whatsappUrl}
+          // href={whatsappUrl}
+          href="/orden"
           target="_blank"
           rel="noreferrer"
         >
-          <MessageCircle size={20} /> Escribir por WhatsApp{" "}
+          <MessageCircle size={20} /> Ordenar por WhatsApp{" "}
           <ArrowRight size={17} />
         </a>
       </section>
 
       <footer className="alt-footer">
         <Link href="/" className="alt-brand alt-footer-brand">
-          <AltariaMark className="alt-brand-mark" />
+          <AltariaLogo className="alt-brand-mark" color="#4a2e21" />
+
           <span>
-            <strong>ALTARIA</strong>
-            <small>Conecta · Exhibe · Crece</small>
+            {/* <strong>ALTARIA</strong> */}
+            {/* <small>Conecta · Exhibe · Crece</small> */}
           </span>
         </Link>
-        <p>© {new Date().getFullYear()} Altaria. Diseñado para conectar.</p>
+        <p>© {new Date().getFullYear()} | Altaria</p>
         <Link href="/administracion">
           Acceso administrativo <ArrowRight size={14} />
         </Link>

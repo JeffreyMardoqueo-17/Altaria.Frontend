@@ -2,320 +2,196 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { 
-  QrCode, 
-  Wifi, 
-  Ruler, 
-  ShieldCheck, 
-  CreditCard, 
-  MessageCircle,
-  Plus,
-  Minus,
-  ArrowLeft,
-  Store,
-  X,
-  Maximize2
-} from "lucide-react";
+import { ArrowLeft, Maximize2, X, Check } from "lucide-react";
 import "./OrdenSection.css";
 
 const productGallery = [
-  {
-    id: 1,
-    url: "/imgs/ejemplo.jpeg",
-    alt: "Display Altaria en mostrador",
-  },
-  {
-    id: 2,
-    url: "/imgs/masespecificaciones.jpeg",
-    alt: "Detalle del material y acabado Premium",
-  },
-  {
-    id: 3,
-    url: "/imgs/especidficiaciones.jpeg",
-    alt: "Cliente escaneando con NFC en mesa",
-  },
-  {
-    id: 4,
-    url: "/imgs/sola.jpeg",
-    alt: "Vista en perspectiva del QR único",
-  },
+  { id: 1, url: "/imgs/ejemplo.jpeg", alt: "Display Altaria" },
+  { id: 2, url: "/imgs/masespecificaciones.jpeg", alt: "Detalle Acabado" },
+  { id: 3, url: "/imgs/especidficiaciones.jpeg", alt: "Uso NFC" },
+  { id: 4, url: "/imgs/sola.jpeg", alt: "Vista Perspectiva" },
 ];
 
-interface PricingTier {
+interface Option {
   id: string;
-  minQty: number;
-  maxQty: number;
-  pricePerUnit: number;
-  label: string;
-  subtext: string;
-  badge?: string;
-  isCustomShipping?: boolean;
+  title: string;
+  units: string;
+  price: string;
+  detail: string;
+  tag?: string;
+  rawPrice: number;
 }
 
-const pricingTiers: PricingTier[] = [
-  { 
-    id: "tier-1",
-    minQty: 1, 
-    maxQty: 1, 
-    pricePerUnit: 24.99, 
-    label: "1 Unidad", 
-    subtext: "+ envío",
-    isCustomShipping: true 
+const options: Option[] = [
+  {
+    id: "opt-1",
+    title: "Pieza Individual",
+    units: "1 Unidad",
+    price: "$24.99",
+    detail: "+ Envío a cotizar",
+    rawPrice: 24.99,
   },
-  { 
-    id: "tier-2",
-    minQty: 2, 
-    maxQty: 4, 
-    pricePerUnit: 20.99, 
-    label: "2–4 Unidades", 
-    subtext: "$20.99 c/u", 
-    badge: "Más popular" 
+  {
+    id: "opt-2",
+    title: "Set Comercial",
+    units: "3 Unidades",
+    price: "$62.97",
+    detail: "$20.99 c/u",
+    tag: "Recomendado",
+    rawPrice: 62.97,
   },
-  { 
-    id: "tier-3",
-    minQty: 5, 
-    maxQty: 10, 
-    pricePerUnit: 18.99, 
-    label: "5–10 Unidades", 
-    subtext: "$18.99 c/u", 
-    badge: "Mejor precio" 
+  {
+    id: "opt-3",
+    title: "Colección Completa",
+    units: "5 Unidades",
+    price: "$94.95",
+    detail: "$18.99 c/u",
+    tag: "Exclusivo",
+    rawPrice: 94.95,
   },
 ];
 
 export const OrdenSection: React.FC = () => {
-  const [selectedImage, setSelectedImage] = useState(productGallery[0].url);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const [selectedTier, setSelectedTier] = useState<PricingTier>(pricingTiers[1]);
-  const [quantity, setQuantity] = useState<number>(2);
+  const [selectedImg, setSelectedImg] = useState(productGallery[0].url);
+  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<Option>(options[1]);
 
   const whatsappNumber = "50369842090";
 
-  const handleTierSelect = (tier: PricingTier) => {
-    setSelectedTier(tier);
-    setQuantity(tier.minQty);
-  };
+  const handleWhatsApp = () => {
+    const text = 
+      `Hola Altaria, deseo realizar un pedido:%0A%0A` +
+      `• *Opción:* ${selectedOption.title} (${selectedOption.units})%0A` +
+      `• *Total:* ${selectedOption.price} USD%0A%0A` +
+      `Quedo a la espera para coordinar la entrega.`;
 
-  const calculateSubtotal = () => {
-    return (quantity * selectedTier.pricePerUnit).toFixed(2);
-  };
-
-  const handleWhatsAppOrder = () => {
-    const subtotal = calculateSubtotal();
-    const shippingDetail = selectedTier.isCustomShipping ? " (+ envío a cotizar)" : "";
-    
-    const message = 
-      `Hola Altaria, quisiera realizar un pedido:%0A%0A` +
-      `*Producto:* Display Altaria Inteligente%0A` +
-      `*Rango Seleccionado:* ${selectedTier.label}%0A` +
-      `*Cantidad exacta:* ${quantity} unidad(es)%0A` +
-      `*Precio unitario:* $${selectedTier.pricePerUnit} USD%0A` +
-      `*Subtotal estimado:* $${subtotal} USD${shippingDetail}%0A%0A` +
-      `Quedo a la espera para definir los detalles de envío y configuración.`;
-
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
   };
 
   return (
-    <section className="alt-orden-section">
-      <div className="alt-orden-container">
+    <section className="alt-luxury-section">
+      <div className="alt-luxury-container">
         
-        {/* BOTÓN REGRESAR A PÁGINA PRINCIPAL */}
-        <div className="alt-back-navigation">
-          <Link href="/" className="alt-btn-back">
-            <ArrowLeft size={18} />
-            <span>Volver a la página principal</span>
+        {/* NAVEGACIÓN MINIMALISTA */}
+        <nav className="alt-luxury-nav">
+          <Link href="/" className="alt-luxury-back">
+            <ArrowLeft size={15} />
+            <span>Inicio</span>
           </Link>
-        </div>
+          {/* <span className="alt-brand-subtle">ALTARIA</span> */}
+        </nav>
 
-        {/* ENCABEZADO PRINCIPAL */}
-        <div className="alt-orden-header">
-          {/* <span className="alt-orden-bg-text">Altaria</span> */}
-          <p className="alt-eyebrow">HAZ TU PEDIDO</p>
-          <h2 className="alt-title-serif">Personaliza tu orden y conecta con tus clientes</h2>
-        </div>
-
-        <div className="alt-orden-grid">
-          {/* COLUMNA IZQUIERDA: GALERÍA COLLAGE */}
-          <div className="alt-orden-gallery">
+        {/* ESTRUCTURA PRINCIPAL */}
+        <div className="alt-luxury-grid">
+          
+          {/* GALERÍA EDITORIAL */}
+          <div className="alt-gallery-wrapper">
             <div 
-              className="alt-gallery-main" 
-              onClick={() => setLightboxImage(selectedImage)}
+              className="alt-main-frame" 
+              onClick={() => setLightbox(selectedImg)}
             >
-              <img src={selectedImage} alt="Display Altaria Seleccionado" />
-              <div className="alt-gallery-overlay">
-                <Maximize2 size={24} />
-                <span>Haz clic para ampliar</span>
-              </div>
+              <img src={selectedImg} alt="Display Altaria" />
+              <button type="button" className="alt-expand-btn">
+                <Maximize2 size={16} />
+              </button>
             </div>
-            
-            <div className="alt-gallery-thumbs">
-              {productGallery.map((img) => (
+
+            <div className="alt-thumb-row">
+              {productGallery.map((item) => (
                 <button
-                  key={img.id}
-                  className={`alt-thumb-btn ${selectedImage === img.url ? "active" : ""}`}
-                  onClick={() => setSelectedImage(img.url)}
+                  key={item.id}
                   type="button"
+                  className={`alt-thumb-frame ${selectedImg === item.url ? "is-selected" : ""}`}
+                  onClick={() => setSelectedImg(item.url)}
                 >
-                  <img src={img.url} alt={img.alt} />
+                  <img src={item.url} alt={item.alt} />
                 </button>
               ))}
             </div>
-
-            <div className="alt-product-info-card">
-              <h3 className="alt-title-serif">¿Qué es Altaria y cómo funciona?</h3>
-              <p>
-                Altaria es un acrílico inteligente de alta gama diseñado para mesas, barras o recepciones. 
-                Permite a tus clientes dejar reseñas en Google o acceder a tus redes en segundos con solo 
-                acercar su smartphone o escanear el código.
-              </p>
-
-              <div className="alt-features-list">
-                <div className="alt-feature-item">
-                  <Wifi className="alt-feature-icon" size={20} />
-                  <div>
-                    <strong>Tecnología NFC Instantánea</strong>
-                    <p>Funciona sin necesidad de descargar aplicaciones.</p>
-                  </div>
-                </div>
-
-                <div className="alt-feature-item">
-                  <QrCode className="alt-feature-icon" size={20} />
-                  <div>
-                    <strong>Código QR Único Grabado</strong>
-                    <p>Impresión de alta precisión resistente al desgaste diario.</p>
-                  </div>
-                </div>
-
-                <div className="alt-feature-item">
-                  <Ruler className="alt-feature-icon" size={20} />
-                  <div>
-                    <strong>Medidas & Material</strong>
-                    <p>12cm x 15cm | Acrílico fundido Premium ultra resistente.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* COLUMNA DERECHA: SELECCIÓN DE PRECIOS */}
-          <div className="alt-orden-checkout">
-            <div className="alt-checkout-card">
-              <h3 className="alt-title-serif">Precios y Cantidades</h3>
-              <p className="alt-checkout-subtitle">Selecciona el rango de unidades que necesitas para tu negocio.</p>
+          {/* DETALLES Y SELECCIÓN DE ADQUISICIÓN */}
+          <div className="alt-details-wrapper">
+            
+            <header className="alt-product-header">
+              <span className="alt-luxury-tag">TECNOLOGÍA & DISEÑO</span>
+              <h1 className="alt-product-title">Display Inteligente</h1>
+              <p className="alt-product-desc">
+                Acrílico fundido de alta densidad con chip NFC integrado y grabado QR permanente.
+                Diseñado para elevar la presencia de tu marca.
+              </p>
+            </header>
 
-              {/* LISTA DE PRECIOS Y BADGES */}
-              <div className="alt-tiers-list">
-                {pricingTiers.map((tier) => {
-                  const isSelected = selectedTier.id === tier.id;
+            <div className="alt-section-divider" />
+
+            {/* SELECCIÓN DE OFERTAS */}
+            <div className="alt-selector-group">
+              <span className="alt-group-label">SELECCIONA TU CONFIGURACIÓN</span>
+              
+              <div className="alt-options-stack">
+                {options.map((opt) => {
+                  const isSelected = selectedOption.id === opt.id;
                   return (
                     <div
-                      key={tier.id}
-                      className={`alt-tier-card ${isSelected ? "selected" : ""}`}
-                      onClick={() => handleTierSelect(tier)}
+                      key={opt.id}
+                      className={`alt-option-card ${isSelected ? "is-active" : ""}`}
+                      onClick={() => setSelectedOption(opt)}
                     >
-                      {tier.badge && <span className="alt-badge-popular">{tier.badge}</span>}
-                      <div className="alt-tier-info">
-                        <strong>{tier.label}</strong>
-                        <span>{tier.subtext}</span>
+                      <div className="alt-option-left">
+                        <div className="alt-radio-check">
+                          {isSelected && <Check size={12} strokeWidth={3} />}
+                        </div>
+                        <div>
+                          <div className="alt-option-title-row">
+                            <span className="alt-option-title">{opt.title}</span>
+                            {opt.tag && <span className="alt-mini-tag">{opt.tag}</span>}
+                          </div>
+                          <span className="alt-option-units">{opt.units} — {opt.detail}</span>
+                        </div>
                       </div>
-                      <div className="alt-tier-radio">
-                        <div className="alt-radio-inner" />
+
+                      <div className="alt-option-price">
+                        {opt.price}
                       </div>
                     </div>
                   );
                 })}
               </div>
+            </div>
 
-              {/* CONTADOR LIMITADO SEGÚN EL RANGO */}
-              <div className="alt-quantity-selector">
-                <span>Unidades elegidas ({selectedTier.label}):</span>
-                <div className="alt-quantity-controls">
-                  <button 
-                    type="button"
-                    onClick={() => setQuantity((prev) => Math.max(selectedTier.minQty, prev - 1))}
-                    disabled={quantity <= selectedTier.minQty}
-                  >
-                    <Minus size={16} />
-                  </button>
-                  <span className="alt-quantity-val">{quantity}</span>
-                  <button 
-                    type="button"
-                    onClick={() => setQuantity((prev) => Math.min(selectedTier.maxQty, prev + 1))}
-                    disabled={quantity >= selectedTier.maxQty}
-                  >
-                    <Plus size={16} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="alt-divider" />
-
-              <div className="alt-shipping-info">
-                <div className="alt-info-row">
-                  <Store size={18} className="alt-info-icon" />
-                  <div>
-                    <strong>Servicio Completo en el Lugar</strong>
-                    <p>Configuración previa e instalación personalizada listas en tu establecimiento.</p>
-                  </div>
-                </div>
-                <div className="alt-info-row">
-                  <CreditCard size={18} className="alt-info-icon" />
-                  <div>
-                    <strong>Métodos de Pago</strong>
-                    <p>Transferencia bancaria, depósito o efectivo en el lugar al terminar la entrega.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="alt-divider" />
-
-              <div className="alt-price-summary">
-                <div className="alt-summary-row">
-                  <span>Subtotal ({quantity} {quantity === 1 ? 'unidad' : 'unidades'}):</span>
-                  <strong>${calculateSubtotal()} USD</strong>
-                </div>
-                {selectedTier.isCustomShipping && (
-                  <div className="alt-summary-row shipping-note">
-                    <span>Envío:</span>
-                    <small>Se cotiza por WhatsApp</small>
-                  </div>
-                )}
-                <div className="alt-summary-row total">
-                  <span>Total Estimado:</span>
-                  <strong>${calculateSubtotal()} USD</strong>
-                </div>
+            {/* RESUMEN Y ACCIÓN */}
+            <div className="alt-action-block">
+              <div className="alt-total-row">
+                <span>Inversión estimada</span>
+                <span className="alt-total-amount">{selectedOption.price} <small>USD</small></span>
               </div>
 
               <button 
                 type="button" 
-                className="alt-btn-whatsapp" 
-                onClick={handleWhatsAppOrder}
+                className="alt-luxury-cta" 
+                onClick={handleWhatsApp}
               >
-                <MessageCircle size={22} />
-                <span>Completar Pedido por WhatsApp</span>
+                Solicitar por WhatsApp
               </button>
 
-              <div className="alt-guarantee">
-                <ShieldCheck size={16} />
-                <span>Garantía de calidad Altaria | Configuración previa incluida</span>
-              </div>
+              <p className="alt-foot-note">
+                Incluye pre-configuración de tu enlace de destino e instalación guiada.
+              </p>
             </div>
+
           </div>
+
         </div>
       </div>
 
-      {/* MODAL LIGHTBOX */}
-      {lightboxImage && (
-        <div className="alt-lightbox-backdrop" onClick={() => setLightboxImage(null)}>
-          <div className="alt-lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button 
-              className="alt-lightbox-close" 
-              onClick={() => setLightboxImage(null)}
-              type="button"
-            >
-              <X size={24} />
+      {/* LIGHTBOX */}
+      {lightbox && (
+        <div className="alt-lightbox-overlay" onClick={() => setLightbox(null)}>
+          <div className="alt-lightbox-container" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="alt-lightbox-close" onClick={() => setLightbox(null)}>
+              <X size={18} />
             </button>
-            <img src={lightboxImage} alt="Vista ampliada Altaria" />
+            <img src={lightbox} alt="Display Altaria Ampliado" />
           </div>
         </div>
       )}

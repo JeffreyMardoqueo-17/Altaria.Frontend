@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  user-select: none;
 }
 .alt-landing {
   --alt-coffee: #4a2e21;
@@ -152,6 +153,67 @@ html {
   box-shadow: 0 8px 16px rgba(74, 46, 33, 0.2);
   transform: translateY(-2px);
 }
+/* Corrección para la barra principal cuando está en móvil */
+@media (max-width: 768px) {
+  /* Mantener el navbar delgado sin que el menú lo deforme */
+  .alt-nav {
+    position: relative;
+  }
+
+  /* Menú desplegable flotante e independiente */
+  .alt-nav-links {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto; /* Evita que ocupe de lado a lado */
+    width: 220px; /* Ancho fijo y compacto */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px;
+    border: 1px solid rgba(74, 46, 33, 0.15);
+    border-radius: 14px;
+    background: #2a1810; /* Fondo café oscuro para dar contraste premium */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+  }
+
+  .alt-nav-links.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Color de letras visible con buen contraste */
+  .alt-nav-links a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #f8f3ea !important; /* Letras claras sobre fondo oscuro */
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  /* Estado hover/active al tocar con el dedo */
+  .alt-nav-links a:hover,
+  .alt-nav-links a:active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important;
+  }
+
+  .alt-nav-links a::after {
+    display: none;
+  }
+}
+
+
 .alt-menu-button {
   display: none;
   width: 39px;
@@ -439,7 +501,7 @@ html {
 
 .alt-display-subtitle {
   font-size: 0.78rem;
-  color: #dcc9b3;
+  color: #b8b3dc;
   margin: 0 0 2px 0;
 }
 
@@ -696,16 +758,18 @@ html {
   transform: scaleX(1);
 }
 
+/* ESTRUCTURA GENERAL DE LA SECCIÓN */
 .alt-process {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dividido 50% / 50% */
-  gap: clamp(30px, 5vw, 60px);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(40px, 6vw, 80px);
   align-items: center;
-  padding: 116px max(32px, calc((100% - 1176px) / 2));
+  padding: 120px max(32px, calc((100% - 1200px) / 2));
   overflow: hidden;
   background: var(--alt-coffee);
   color: #fffaf3;
 }
+
 
 /* Lado Izquierdo */
 .alt-process-content {
@@ -809,154 +873,156 @@ html {
 }
 
 /* Lado Derecho - Imagen */
+
+/* LADO DERECHO: COLLAGE ASIMÉTRICO EDITORIAL */
 .alt-process-media {
   width: 100%;
-  height: 100%;
-  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.alt-collage-container {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.alt-process-image {
-  width: 50%;
-  max-width: 250px;
-  height: auto;
-  max-height: 550px;
-  object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(222, 193, 159, 0.2);
+/* TARJETAS DEL COLLAGE */
+.alt-collage-card {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(222, 193, 159, 0.25);
+  background: #2a1a12;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Responsivo para móviles */
+.alt-collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alt-collage-card:hover .alt-collage-img {
+  transform: scale(1.06);
+}
+
+/* 1. Tarjeta Principal (Centro-Izquierda) */
+.alt-card-main {
+  width: 270px;
+  height: 380px;
+  left: 0;
+  top: 40px;
+  z-index: 2;
+}
+
+.alt-card-main:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  z-index: 5;
+}
+
+/* Badge flotante en la foto principal */
+.alt-card-glass-tag {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  background: rgba(30, 18, 12, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(222, 193, 159, 0.3);
+  border-radius: 30px;
+  color: #dec19f;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 2. Tarjeta Secundaria (Arriba-Derecha) */
+.alt-card-secondary {
+  width: 210px;
+  height: 270px;
+  right: 10px;
+  top: 10px;
+  z-index: 3;
+}
+
+.alt-card-secondary:hover {
+  transform: translateY(-6px) rotate(1.5deg);
+  z-index: 5;
+}
+
+/* 3. Tarjeta Terciaria (Abajo-Derecha) */
+.alt-card-tertiary {
+  width: 170px;
+  height: 200px;
+  right: 40px;
+  bottom: 20px;
+  z-index: 1;
+  border-color: rgba(222, 193, 159, 0.15);
+  opacity: 0.9;
+}
+
+.alt-card-tertiary:hover {
+  opacity: 1;
+  transform: translateY(-4px) scale(1.02);
+  z-index: 5;
+}
+
+/* RESPLANDOR AMBIENTAL FLOTANTE */
+.alt-collage-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(222, 193, 159, 0.12) 0%, rgba(0,0,0,0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* RESPONSIVO PARA MÓVILES Y TABLETS */
 @media (max-width: 992px) {
   .alt-process {
     grid-template-columns: 1fr;
-    padding: 64px 24px;
+    padding: 72px 24px;
+    gap: 48px;
   }
 
-  .alt-process-media {
-    min-height: auto;
-    margin-top: 32px;
+  .alt-collage-container {
+    height: 420px;
+    max-width: 380px;
+  }
+
+  .alt-card-main {
+    width: 210px;
+    height: 300px;
+    top: 30px;
+  }
+
+  .alt-card-secondary {
+    width: 170px;
+    height: 220px;
+  }
+
+  .alt-card-tertiary {
+    width: 130px;
+    height: 150px;
+    right: 20px;
+    bottom: 10px;
   }
 }
-
-.alt-start {
-  display: grid;
-  grid-template-columns: minmax(360px, 0.86fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(65px, 10vw, 150px);
-}
-.alt-start-visual {
-  position: relative;
-  display: grid;
-  min-height: 440px;
-  place-items: center;
-}
-.alt-start-back {
-  position: absolute;
-  width: 335px;
-  height: 335px;
-  background: #dfc8ac;
-  transform: rotate(-10deg);
-}
-.alt-start-card {
-  position: relative;
-  display: grid;
-  width: 305px;
-  height: 400px;
-  align-content: center;
-  justify-items: center;
-  overflow: hidden;
-  border: 7px solid #fffaf3;
-  background: linear-gradient(155deg, #fffdfa 4%, #eadaca 100%);
-  box-shadow:
-    20px 25px 0 rgba(74, 46, 33, 0.12),
-    0 28px 45px rgba(74, 46, 33, 0.16);
-  color: var(--alt-coffee);
-  transform: rotate(7deg);
-}
-.alt-start-card::before {
-  position: absolute;
-  top: -130px;
-  right: -95px;
-  width: 280px;
-  height: 280px;
-  border: 1px solid rgba(74, 46, 33, 0.14);
-  border-radius: 50%;
-  content: "";
-}
-.alt-start-card svg {
-  width: 88px;
-}
-.alt-start-card span {
-  margin-top: 13px;
-  letter-spacing: 0.22em;
-  font-size: 20px;
-}
-.alt-start-card small {
-  margin-top: 8px;
-  color: #806d63;
-  font-size: 7px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-.alt-start-wave {
-  position: absolute;
-  right: -65px;
-  bottom: -86px;
-  width: 255px;
-  height: 180px;
-  border: 1px solid rgba(74, 46, 33, 0.22);
-  border-radius: 50%;
-  transform: rotate(-25deg);
-}
-.alt-start-label {
-  position: absolute;
-  right: -2px;
-  bottom: 13px;
-  color: var(--alt-coffee);
-  font-family: var(--font-heading), Georgia, serif;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 0.92;
-}
-.alt-start-label em {
-  color: #9b735b;
-  font-style: italic;
-}
-.alt-start-copy {
-  max-width: 505px;
-}
-.alt-start h2 {
-  font-size: clamp(42px, 4.25vw, 58px);
-}
-.alt-start-copy > p:not(.alt-eyebrow) {
-  margin: 23px 0 26px;
-  color: #776760;
-  font-size: 15px;
-  line-height: 1.75;
-}
-.alt-start-copy ul {
-  display: grid;
-  gap: 12px;
-  margin: 0 0 34px;
-  padding: 0;
-  list-style: none;
-  color: #635149;
-  font-size: 13px;
-}
-.alt-start-copy li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.alt-start-copy li svg {
-  color: #9b735b;
-}
-
 .alt-contact {
   position: relative;
   display: grid;
@@ -1261,7 +1327,7 @@ html {
     padding: 8px;
     border: 1px solid rgba(74, 46, 33, 0.1);
     border-radius: 13px;
-    background: rgba(255, 253, 250, 0.95);
+    background: rgb(255, 253, 250);
     box-shadow: 0 17px 32px rgba(74, 46, 33, 0.14);
     opacity: 0;
     pointer-events: none;
