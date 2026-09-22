@@ -35,7 +35,6 @@ export default function PublicDisplayPage({
   useEffect(() => {
     if (!serialCode) return;
 
-    // Usamos apiClient pasándole el tipo de dato <Display> esperado
     apiClient<Display>(`/api/displays/${encodeURIComponent(serialCode)}`)
       .then(setDisplay)
       .catch(() => setError("No encontramos este display."));
@@ -103,17 +102,16 @@ export default function PublicDisplayPage({
         </section>
       </main>
     );
-
-  return (
+return (
     <main className="public-shell">
       <section className="public-card active-display">
         <div className="public-icon success">
           <CheckCircle2 />
         </div>
-        <p className="eyebrow">BIENVENIDO</p>
+        <p className="eyebrow">ESTÁS ESCANEANDO A</p>
         <h1>{display.business?.name}</h1>
         <p className="muted">
-          Gracias por visitarnos. Tu opinión nos ayuda a seguir mejorando.
+          ¡Hola! Qué gusto tenerte por aquí. Conoce más sobre nosotros o déjanos tu opinión.
         </p>
         <a
           className="primary-button"
@@ -121,7 +119,7 @@ export default function PublicDisplayPage({
           target="_blank"
           rel="noreferrer"
         >
-          Dejar una reseña en Google <ArrowRight size={17} />
+          Califícanos en Google <ArrowRight size={17} />
         </a>
       </section>
     </main>

@@ -13,6 +13,7 @@ import {
   Menu,
   PackagePlus,
   Pencil,
+  QrCode,
   RefreshCw,
   ShieldCheck,
   Store,
@@ -69,8 +70,9 @@ type AdminSection =
   | "stock";
 
 const statusLabels = ["Disponible", "Activo", "Desactivado"];
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"; debo de descomentar  esto despues :v
 
+const API_URL = "http://localhost:8080"
 async function api<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const isFormData = options.body instanceof FormData;
 
@@ -373,11 +375,11 @@ function Dashboard({
   }
 
   const titles: Record<AdminSection, string> = {
-    overview: "Operación bajo control.",
+    overview: "Resumen.",
     displays: "Todos tus displays.",
     businesses: "Locales y sus displays.",
     batches: "Lotes de producción.",
-    stock: "Fabrica tu próximo lote.",
+    stock: "Nuevo Lote",
   };
   const labels: Record<AdminSection, string> = {
     overview: "RESUMEN",
@@ -475,7 +477,7 @@ function Dashboard({
               <Menu size={21} />
             </button>
             <div>
-              <p className="eyebrow">PANEL DE CONTROL / {labels[section]}</p>
+              <p className="eyebrow">Administración/ {labels[section]}</p>
               <h1>{titles[section]}</h1>
             </div>
           </div>
@@ -548,7 +550,6 @@ function Overview({
     <div className="content">
       <div className="hero-line">
         <div>
-          <span className="date-label">OPERACIÓN ACTUAL</span>
           <p className="hero-stat">
             {counts.available} <span>displays disponibles en esta página</span>
           </p>
@@ -968,7 +969,7 @@ function BusinessDetail({
             <Pencil size={16} /> Editar local
           </button>
           <button
-            className="outline-button"
+            className="outline-button activar"
             onClick={() => void setStatus(1)}
             disabled={busy}
           >
@@ -1138,18 +1139,6 @@ function Stock({ onDone }: { onDone: (message: string) => Promise<void> }) {
 
   return (
     <div className="content narrow">
-      <div className="process-banner">
-        <div className="process-icon">
-          <PackagePlus />
-        </div>
-        <div>
-          <strong>Secuencia automática, sin duplicados</strong>
-          <p>
-            El sistema continuará desde el último serial y generará un QR
-            permanente por display.
-          </p>
-        </div>
-      </div>
       <div className="form-card">
         <div className="card-heading">
           <div>
@@ -1181,7 +1170,7 @@ function Stock({ onDone }: { onDone: (message: string) => Promise<void> }) {
           </label>
           <div className="form-foot">
             <p>
-              <Wifi size={16} /> El ZIP incluirá un PNG por display.
+              <QrCode size={16} /> El ZIP incluirá un PNG por display.
             </p>
             <button className="primary-button" disabled={loading}>
               {loading ? "Generando..." : "Generar y descargar ZIP"}{" "}
