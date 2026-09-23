@@ -17,42 +17,32 @@ interface TestimonialsProps {
   reviews?: ReviewItem[];
   autoPlayInterval?: number;
 }
-
 const defaultReviews: ReviewItem[] = [
   {
     id: 1,
-    name: "Carlos Mendoza",
-    role: "Dueño de Café Don Pedro",
+    name: "Beatriz \"Taty\" Menjívar",
+    role: "Propietaria de Café Las Margaritas",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
     comment:
-      "Aumentamos más del 40% de reseñas en Google en el primer mes. Es increíble lo fluido que es para los clientes.",
+      "Al principio tenía dudas de si los clientes se animarían a dejar su opinión, pero es super sencillo. Nuestra calificación ha subido muchísimo y se ve excelente en la barra.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Dra. Elena Ramos",
-    role: "Directora en Clínica Sonrisas",
+    name: "Alejandro Interiano",
+    role: "Encargado en Pupusería La Bendición",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
     comment:
-      "El diseño es elegante para nuestra recepción y la velocidad del NFC hace que los clientes lo usen sin dudar.",
+      "Es una gran herramienta para el local. Los clientes ven el display en la caja, acercan su celular y en segundos nos dejan su reseña. Nos ha ayudado a destacar un montón en Google.",
     rating: 5,
   },
   {
     id: 3,
-    name: "John Doe",
-    role: "Fundador & Entrepreneur",
+    name: "Mauricio \"Chele\" Palacios",
+    role: "Dueño de Car Wash Rápido y Limpio",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
     comment:
-      "Una solución rápida y estética que elevó la credibilidad de nuestro local en un par de días.",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Sofía Martínez",
-    role: "Gerente en Boutique Le Style",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-    comment:
-      "La mejor inversión en punto de venta. Pasamos de pedir reseñas a recibirlas de forma natural.",
+      "Mientras los clientes esperan la entrega de su vehículo, aprovechan para calificar el servicio con el NFC. La cantidad de reseñas positivas aumentó desde la primera semana.",
     rating: 5,
   },
 ];

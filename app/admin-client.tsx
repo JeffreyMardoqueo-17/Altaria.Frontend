@@ -70,9 +70,9 @@ type AdminSection =
   | "stock";
 
 const statusLabels = ["Disponible", "Activo", "Desactivado"];
-// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"; debo de descomentar  esto despues :v
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"; //debo de descomentar  esto despues :v
 
-const API_URL = "http://localhost:8080"
+// const API_URL = "http://localhost:8080"
 async function api<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const isFormData = options.body instanceof FormData;
 

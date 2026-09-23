@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Altaria | Conecta, exhibe, crece",
+  title: "Altaria",
   description: "Displays inteligentes para convertir visitas en nuevas oportunidades para tu negocio.",
 };
 
