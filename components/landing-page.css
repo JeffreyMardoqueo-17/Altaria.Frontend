@@ -154,53 +154,63 @@ html {
 
 
 /* --- 2. MODO CELULAR: Solo el ícono de hamburguesa en la esquina, sin cajas blancas --- */
+/* --- MODO CELULAR: Logo a la izquierda, Hamburguesa a la derecha --- */
 @media (max-width: 768px) {
   .alt-nav-shell {
     padding: 0 16px;
-    background: #f8f3ea; /* Mantiene la franja del mismo color del fondo */
+    background: #f8f3ea;
   }
 
   .alt-nav {
-    height: auto;
-    justify-content: flex-end; /* Manda todo a la esquina derecha */
+    height: 72px; /* Mantiene la altura estándar para alinear bien el logo y el botón */
+    justify-content: space-between; /* Distribuye elementos a los extremos */
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
 
-  /* Ocultar logo y botón de WhatsApp de forma absoluta en celular */
+  /* Aseguramos que el logo SÍ se muestre y tenga un tamaño adecuado en móvil */
   .alt-brand {
-    display: none !important;
+    display: inline-flex !important;
   }
 
+  .alt-brand-mark {
+    width: 120px; /* Reducimos ligeramente el ancho para pantallas chicas */
+    height: 40px;
+  }
+
+  /* Ocultar el CTA largo si lo hubiera, dejando espacio limpio */
   .alt-nav-cta {
     display: none !important;
   }
 
-  /* El contenedor de acciones solo deja espacio para el botón */
+  /* El contenedor de acciones se alinea a la derecha */
   .alt-nav-actions {
-    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: flex-end;
   }
 
-  /* Limpiar el botón de hamburguesa para que no tenga fondos extraños */
+  /* Estilo limpio para el botón de hamburguesa */
   .alt-menu-button {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    padding: 0;
+    padding: 8px;
+    color: #4a2e21;
+    cursor: pointer;
   }
 
-  /* Menú desplegable cuando se abre (aparece limpio abajo a la derecha) */
+  /* Menú desplegable flotante abajo a la derecha */
   .alt-nav-links {
     position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    width: 210px;
+    top: calc(100% + 4px);
+    right: 16px;
+    width: 220px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid rgba(74, 46, 33, 0.15);
     border-radius: 12px;
     background: #ffffff !important;
@@ -353,30 +363,50 @@ html {
 .alt-text-link:hover {
   gap: 13px;
   border-color: var(--alt-coffee);
+}.alt-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
 }
-.alt-text-link span {
-  color: #9b735b;
-  font-size: 17px;
-  line-height: 0.5;
-}
-.alt-hero-trust {
+  /* ------------Tarjetas del hero */
+.alt-feature-card {
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 54px;
-  color: #806d63;
-  font-size: 11px;
-  font-weight: 700;
-}
-.alt-hero-trust span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.alt-hero-trust svg {
-  color: #9b735b;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
 }
 
+.alt-feature-card:hover {
+  transform: translateY(-3px);
+}
+
+.alt-feature-icon {
+  background: rgba(155, 115, 91, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9b735b;
+  flex-shrink: 0;
+}
+
+.alt-feature-content h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4a3b32; /* O el color principal de títulos que manejes */
+  margin: 0 0 4px 0;
+}
+
+.alt-feature-content p {
+  font-size: 12px;
+  font-weight: 500;
+  color: #806d63;
+  margin: 0;
+  line-height: 1.4;
+}
 .alt-hero-art {
   position: relative;
   display: grid;
@@ -494,137 +524,6 @@ html {
   font-style: italic;
 }
 
-/* Container adjustment */
-.alt-hero-art {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  min-height: 520px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Acrílico Display */
-.alt-display {
-  position: relative;
-  z-index: 2;
-  width: 280px;
-  background-color: #4a2e21;
-  color: #ffffff;
-  border-radius: 18px;
-  padding: 24px 20px 18px 20px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(220, 201, 179, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.alt-display-header {
-  width: 100%;
-}
-
-.alt-display-subtitle {
-  font-size: 0.78rem;
-  color: #b8b3dc;
-  margin: 0 0 2px 0;
-}
-
-.alt-display-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0 0 6px 0;
-  color: #ffffff;
-}
-
-.alt-google-brand-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 4px;
-}
-
-.alt-display-stars {
-  color: #f4b400;
-  font-size: 1.2rem;
-  letter-spacing: 3px;
-  margin-bottom: 12px;
-}
-
-/* QR Container */
-.alt-qr-container {
-  width: 120px !important;
-  height: 120px !important;
-  margin: 0 auto 12px auto !important;
-}
-
-/* Logo Altaria Centrado */
-.alt-brand-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.logo-qr {
-  display: block;
-  height: auto;
-  max-width: 110px;
-  color: #ffffff;
-  fill: currentColor;
-}
-
-/* NFC Footer */
-.alt-display-footer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border-top: 1px solid rgba(220, 201, 179, 0.2);
-  padding-top: 12px;
-}
-
-.alt-nfc-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ffffff;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 0.5rem;
-  font-weight: 700;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.alt-nfc-text {
-  text-align: left;
-}
-
-.alt-nfc-text strong {
-  display: block;
-  font-size: 0.68rem;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-}
-
-.alt-nfc-text small {
-  display: block;
-  font-size: 0.6rem;
-  color: #dcc9b3;
-}
-
 /* Floating Card Base */
 .alt-float-card-bottom {
   position: absolute;
@@ -632,8 +531,33 @@ html {
   left: -20px;
   z-index: 3;
 }
+.alt-solution-card .alt-card-subtext {
+  font-size: 13px;
+  color: #806d63; /* Ajusta según el color secundario de tus textos */
+  margin-top: 8px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
 
 
+.alt-display-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px; /* Ajusta según el ancho que desees para la tarjeta */
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Sombra elegante para que resalte sobre el fondo */
+  border: 1px solid rgba(155, 115, 91, 0.15);
+}
+
+.alt-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
 .alt-display-bottom {
   position: relative;
   z-index: 1;
@@ -794,8 +718,8 @@ html {
   align-items: center;
   padding: 120px max(32px, calc((100% - 1200px) / 2));
   overflow: hidden;
-  background: var(--alt-coffee);
-  color: #fffaf3;
+  background: #eee0d0;
+  color: var(--alt-coffee-deep);
 }
 
 
@@ -807,7 +731,7 @@ html {
 }
 
 .alt-process .alt-eyebrow {
-  color: #ddc4a8;
+  color: var(--alt-coffee);
 }
 
 .alt-process h2 {
@@ -816,24 +740,24 @@ html {
 }
 
 .alt-process h2 em {
-  color: #dec19f;
+  color: #9b725a;
 }
 
 .alt-process-intro > p:not(.alt-eyebrow) {
   max-width: 330px;
   margin: 23px 0 33px;
-  color: #d4ba9e;
+  color: var(--alt-coffee);
   font-size: 14px;
   line-height: 1.75;
 }
 
 .alt-text-link-light {
-  border-color: rgba(255, 250, 243, 0.4);
-  color: #fffaf3;
+  border-color: #9b725a;
+  color: #9b725a;
 }
 
 .alt-text-link-light:hover {
-  border-color: #fffaf3;
+  border-color: #9b725a;
 }
 
 .alt-process-flow {
@@ -879,7 +803,7 @@ html {
 .alt-step {
   display: block;
   margin: 0 0 20px;
-  color: #dec19f;
+  color: var(--alt-coffee-deep);
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.15em;
@@ -895,8 +819,9 @@ html {
 
 .alt-process-flow p {
   margin: 0;
-  color: #d4ba9e;
+  color: var(--alt-coffee-deep);
   font-size: 12px;
+  /* font-style: oblique; */
   line-height: 1.5;
 }
 
@@ -1050,18 +975,68 @@ html {
     right: 20px;
     bottom: 10px;
   }
-}
-.alt-contact {
+}.alt-contact {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 48px;
+  /* Dos columnas: Izquierda para la imagen, Derecha para el texto */
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
   align-items: center;
   padding: 94px max(32px, calc((100% - 1176px) / 2));
   overflow: hidden;
-  background: #d7c0a3;
-  color: var(--alt-coffee);
+  background: #efe1d0;
+  color: var(--alt-paper);
 }
+
+/* Contenedor y diseño de la imagen a la izquierda */
+.alt-contact-image-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alt-contact-img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(74, 46, 33, 0.12);
+}
+
+/* Contenedor de la derecha */
+.alt-contact-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* Espacio entre el texto y el botón */
+}
+
+.alt-contact h2 {
+  max-width: 720px;
+  font-size: clamp(36px, 4vw, 56px); /* Ajustado ligeramente para que encaje bien al lado de la imagen */
+  line-height: 1.15;
+  color: var(--alt-coffee-deep);
+}
+
+.alt-contact h2 em {
+  color: #9b725a;
+  font-style: italic;
+}
+
+.alt-contact p:not(.alt-eyebrow) {
+  max-width: 525px;
+  margin: 18px 0 0;
+  color: var(--alt-coffee-deep);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Elemento decorativo opcional de fondo */
 .alt-contact-decor {
   position: absolute;
   right: 5%;
@@ -1070,25 +1045,28 @@ html {
   font-family: var(--font-heading), Georgia, serif;
   font-size: 380px;
   line-height: 1;
+  pointer-events: none;
 }
-.alt-contact > div:nth-child(2),
-.alt-contact > a {
-  position: relative;
-  z-index: 1;
-}
-.alt-contact h2 {
-  max-width: 720px;
-  font-size: clamp(42px, 4.7vw, 65px);
-}
-.alt-contact h2 em {
-  color: #704939;
-}
-.alt-contact p:not(.alt-eyebrow) {
-  max-width: 525px;
-  margin: 22px 0 0;
-  color: #68564c;
-  font-size: 15px;
-  line-height: 1.7;
+
+/* Responsive Design para Tablets y Móviles */
+@media (max-width: 968px) {
+  .alt-contact {
+    grid-template-columns: 1fr; /* Pasa a una sola columna */
+    gap: 40px;
+    padding: 64px 24px;
+  }
+
+  .alt-contact-image-wrapper {
+    order: 2; /* Si prefieres que en móvil la imagen vaya abajo, o déjalo en order: 1 si quieres que vaya arriba */
+  }
+
+  .alt-contact-content {
+    order: 1;
+  }
+
+  .alt-contact h2 {
+    font-size: clamp(32px, 7vw, 44px);
+  }
 }
 .alt-button-cream {
   padding-right: 22px;

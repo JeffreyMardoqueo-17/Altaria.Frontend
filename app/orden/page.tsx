@@ -2,96 +2,121 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Maximize2, X, Check } from "lucide-react";
+import { ArrowLeft, Maximize2, X, Plus, Minus } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 import "./OrdenSection.css";
 
 const productGallery = [
-  { id: 1, url: "/imgs/blanca-1.jpeg", alt: "Display Altaria" },
+  { id: 1, url: "/imgs/especificaciones-blanca.jpeg", alt: "Display Altaria" },
   { id: 2, url: "/imgs/blanca-2.jpeg", alt: "Detalle Acabado" },
   { id: 3, url: "/imgs/blanca-3.jpeg", alt: "Uso NFC" },
   { id: 4, url: "/imgs/blanco-4.jpeg", alt: "Vista Perspectiva" },
   { id: 5, url: "/imgs/blanca-5.jpeg", alt: "Vista Perspectiva" },
   { id: 6, url: "/imgs/blanca-7.jpeg", alt: "Vista Perspectiva" },
-{id: 7, url: "/imgs/especificaciones-blanca.jpeg", alt: "Especificaciones del display"}
-
-];
-
-interface Option {
-  id: string;
-  title: string;
-  units: string;
-  price: string;
-  detail: string;
-  tag?: string;
-  rawPrice: number;
-}
-
-const options: Option[] = [
-  {
-    id: "opt-1",
-    title: "Pieza Individual",
-    units: "1 Unidad",
-    price: "$24.99",
-    detail: "+ Envío a cotizar",
-    rawPrice: 24.99,
-  },
-  {
-    id: "opt-2",
-    title: "Set Comercial",
-    units: "3 Unidades",
-    price: "$62.97",
-    detail: "$20.99 c/u",
-    tag: "Recomendado",
-    rawPrice: 62.97,
-  },
-  {
-    id: "opt-3",
-    title: "Colección Completa",
-    units: "5 Unidades",
-    price: "$94.95",
-    detail: "$18.99 c/u",
-    tag: "Exclusivo",
-    rawPrice: 94.95,
-  },
+  { id: 7, url: "/imgs/blanca-1.jpeg", alt: "Especificaciones del display" },
 ];
 
 export const OrdenSection: React.FC = () => {
   const [selectedImg, setSelectedImg] = useState(productGallery[0].url);
   const [lightbox, setLightbox] = useState<string | null>(null);
-  const [selectedOption, setSelectedOption] = useState<Option>(options[1]);
+
+  // Estado central: cantidad de displays (1 a 10)
+  const [quantity, setQuantity] = useState<number>(1);
 
   const whatsappNumber = "50369842090";
 
+  // Lógica de precios escalonados (tiers)
+  const getUnitPrice = (qty: number) => {
+    if (qty >= 5) return 19.99; // Pack Empresarial (5 a 10 pzas)
+    if (qty >= 2) return 22.99; // Set Comercial (2 a 4 pzas)
+    return 24.99;             // Pieza Individual (1 pza)
+  };
+
+  const unitPrice = getUnitPrice(quantity);
+  const totalPrice = unitPrice * quantity;
+
+  // Manejadores independientes o generales según el paquete seleccionado
+  const handleCardClick = (targetQty: number) => {
+    setQuantity(targetQty);
+  };
+
+  const handleStep = (
+    e: React.MouseEvent,
+    delta: number,
+    min: number,
+    max: number,
+  ) => {
+    e.stopPropagation();
+    setQuantity((prev) => {
+      const next = prev + delta;
+      if (next < min) return min;
+      if (next > max) return max;
+      return next;
+    });
+  };
+
   const handleWhatsApp = () => {
     const text = 
-      `Hola Altaria, deseo realizar un pedido:%0A%0A` +
-      `• *Opción:* ${selectedOption.title} (${selectedOption.units})%0A` +
-      `• *Total:* ${selectedOption.price} USD%0A%0A` +
-      `Quedo a la espera para coordinar la entrega.`;
+      `Hola Altaria, deseo realizar mi pedido. ✨%0A%0A` +
+      `• *Cantidad:* ${quantity} ${quantity === 1 ? 'display' : 'displays'}%0A` +
+      `• *Negocio:* %0A` +
+      `• *Google:* %0A%0A` +
+      `• *Teléfono:* %0A` +
+      `• *Nombre:* %0A` +
+      `• *Dirección de entrega (departamento/municipio):* %0A%0A` +
+      `*Total:* $${totalPrice.toFixed(2)} + costo de envío según zona de entrega.%0A%0A` +
+      `📍 Quedo pendiente para continuar con el pedido y coordinar la entrega.`;
 
     window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+  };
+
+  // Variantes de animación para Framer Motion
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
   };
 
   return (
     <section className="alt-luxury-section">
       <div className="alt-luxury-container">
-        
-        {/* NAVEGACIÓN MINIMALISTA */}
-        <nav className="alt-luxury-nav">
+        {/* NAVEGACIÓN CON ANIMACIÓN */}
+        <motion.nav 
+          className="alt-luxury-nav"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
           <Link href="/" className="alt-luxury-back">
             <ArrowLeft size={15} />
             <span>Inicio</span>
           </Link>
-          {/* <span className="alt-brand-subtle">ALTARIA</span> */}
-        </nav>
+        </motion.nav>
 
-        {/* ESTRUCTURA PRINCIPAL */}
+        {/* GRID PRINCIPAL */}
         <div className="alt-luxury-grid">
-          
-          {/* GALERÍA EDITORIAL */}
-          <div className="alt-gallery-wrapper">
-            <div 
-              className="alt-main-frame" 
+          {/* GALERÍA */}
+          <motion.div 
+            className="alt-gallery-wrapper"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          >
+            <div
+              className="alt-main-frame"
               onClick={() => setLightbox(selectedImg)}
             >
               <img src={selectedImg} alt="Display Altaria" />
@@ -112,92 +137,252 @@ export const OrdenSection: React.FC = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* DETALLES Y SELECCIÓN DE ADQUISICIÓN */}
-          <div className="alt-details-wrapper">
-            
-            <header className="alt-product-header">
-              <span className="alt-luxury-tag">TECNOLOGÍA & DISEÑO</span>
+          {/* DETALLES Y SELECCIÓN */}
+          <motion.div 
+            className="alt-details-wrapper"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.header variants={fadeInUp} className="alt-product-header">
+              <span className="alt-luxury-tag">Tecnología & Diseño</span>
               <h1 className="alt-product-title">Display Inteligente</h1>
               <p className="alt-product-desc">
-                Acrílico fundido de alta densidad con chip NFC integrado y grabado QR permanente.
-                Diseñado para elevar la presencia de tu marca.
+                Una pieza premium creada para integrarse naturalmente en tu
+                negocio. Fabricada en PVC de alta calidad, con un diseño limpio
+                y elegante que combina tecnología NFC y un QR único para
+                facilitar el acceso de tus clientes a tus reseñas.
               </p>
-            </header>
 
-            <div className="alt-section-divider" />
+              <ul className="alt-features-bullet-list">
+                <li>NFC de última generación</li>
+                <li>+10 años de vida útil</li>
+                <li>QR único y permanente</li>
+                <li>Acrílico de alta calidad</li>
+                <li>Sin mensualidades</li>
+                <li>Sin membresías</li>
+              </ul>
+            </motion.header>
 
-            {/* SELECCIÓN DE OFERTAS */}
-            <div className="alt-selector-group">
-              <span className="alt-group-label">SELECCIONA TU CONFIGURACIÓN</span>
-              
-              <div className="alt-options-stack">
-                {options.map((opt) => {
-                  const isSelected = selectedOption.id === opt.id;
-                  return (
-                    <div
-                      key={opt.id}
-                      className={`alt-option-card ${isSelected ? "is-active" : ""}`}
-                      onClick={() => setSelectedOption(opt)}
-                    >
-                      <div className="alt-option-left">
-                        <div className="alt-radio-check">
-                          {isSelected && <Check size={12} strokeWidth={3} />}
-                        </div>
-                        <div>
-                          <div className="alt-option-title-row">
-                            <span className="alt-option-title">{opt.title}</span>
-                            {opt.tag && <span className="alt-mini-tag">{opt.tag}</span>}
-                          </div>
-                          <span className="alt-option-units">{opt.units} — {opt.detail}</span>
-                        </div>
-                      </div>
+            <motion.div variants={fadeInUp} className="alt-section-divider" />
 
-                      <div className="alt-option-price">
-                        {opt.price}
-                      </div>
+            {/* SELECTOR DE CANTIDAD Y BLOQUES */}
+            <motion.div variants={fadeInUp} className="alt-selector-group">
+              <span className="alt-group-label">
+                Selecciona la cantidad de displays
+              </span>
+
+              <div className="alt-packages-stack">
+                {/* OPCIÓN 1: 1 UNIDAD */}
+                <div
+                  className={`alt-interactive-qty-box mb-4 ${quantity === 1 ? "is-active-card" : ""}`}
+                  onClick={() => handleCardClick(1)}
+                >
+                  <div className="alt-qty-info-left">
+                    <div className="alt-option-title-row">
+                      <span className="alt-option-title">1 unidad</span>
                     </div>
-                  );
-                })}
-              </div>
-            </div>
+                    <span className="alt-option-units">Pieza individual</span>
+                  </div>
 
-            {/* RESUMEN Y ACCIÓN */}
-            <div className="alt-action-block">
+                  <div className="alt-option-right-content">
+                    {quantity === 1 && (
+                      <div
+                        className="alt-qty-stepper-wrapper"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button type="button" className="alt-step-btn" disabled>
+                          <Minus size={14} />
+                        </button>
+                        <span className="alt-qty-static-num">1</span>
+                        <button type="button" className="alt-step-btn" disabled>
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                    )}
+                    <div className="alt-option-price-box">
+                      <span className="alt-option-price">
+                        $24.99 <small>c/u</small>
+                      </span>
+                      <span className="alt-shipping-note">+ envío</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* OPCIÓN 2: SET COMERCIAL (2 - 4 UNIDADES) */}
+                <div
+                  className={`alt-interactive-qty-box mb-4 ${quantity >= 2 && quantity <= 4 ? "is-active-card" : ""}`}
+                  onClick={() =>
+                    handleCardClick(
+                      quantity >= 2 && quantity <= 4 ? quantity : 2,
+                    )
+                  }
+                >
+                  <div className="alt-qty-info-left">
+                    <div className="alt-option-title-row">
+                      <span className="alt-option-title">Set Comercial</span>
+                      <span className="alt-mini-tag">Más vendido</span>
+                    </div>
+                    <span className="alt-option-units">2 a 4 unidades</span>
+                  </div>
+
+                  <div className="alt-option-right-content">
+                    {quantity >= 2 && quantity <= 4 && (
+                      <div
+                        className="alt-qty-stepper-wrapper"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          className="alt-step-btn"
+                          onClick={(e) => handleStep(e, -1, 2, 4)}
+                          disabled={quantity <= 2}
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="alt-qty-static-num">{quantity}</span>
+                        <button
+                          type="button"
+                          className="alt-step-btn"
+                          onClick={(e) => handleStep(e, 1, 2, 4)}
+                          disabled={quantity >= 4}
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                    )}
+                    <div className="alt-option-price-box">
+                      <span className="alt-option-price">
+                        $22.99 <small>c/u</small>
+                      </span>
+                      <span className="alt-shipping-note">+ envío</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* OPCIÓN 3: PACK EMPRESARIAL (5 - 10 UNIDADES) */}
+                <div
+                  className={`alt-interactive-qty-box ${quantity >= 5 && quantity <= 10 ? "is-active-card" : ""}`}
+                  onClick={() =>
+                    handleCardClick(
+                      quantity >= 5 && quantity <= 10 ? quantity : 5,
+                    )
+                  }
+                >
+                  <div className="alt-qty-info-left">
+                    <div className="alt-option-title-row">
+                      <span className="alt-option-title">Pack Empresarial</span>
+                      <span className="alt-mini-tag alt-tag-value">
+                        Mejor valor
+                      </span>
+                    </div>
+                    <span className="alt-option-units">5 a 10 unidades</span>
+                  </div>
+
+                  <div className="alt-option-right-content">
+                    {quantity >= 5 && quantity <= 10 && (
+                      <div
+                        className="alt-qty-stepper-wrapper"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          className="alt-step-btn"
+                          onClick={(e) => handleStep(e, -1, 5, 10)}
+                          disabled={quantity <= 5}
+                        >
+                          <Minus size={14} />
+                        </button>
+                        <span className="alt-qty-static-num">{quantity}</span>
+                        <button
+                          type="button"
+                          className="alt-step-btn"
+                          onClick={(e) => handleStep(e, 1, 5, 10)}
+                          disabled={quantity >= 10}
+                        >
+                          <Plus size={14} />
+                        </button>
+                      </div>
+                    )}
+                    <div className="alt-option-price-box">
+                      <span className="alt-option-price">
+                        $19.99 <small>c/u</small>
+                      </span>
+                      <span className="alt-shipping-note">+ envío</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="alt-bulk-notice">
+                ¿Necesitas más de 10 unidades?{" "}
+                <span onClick={handleWhatsApp} className="alt-bulk-link">
+                  Contáctanos
+                </span>{" "}
+                para conocer nuestro precio especial por cantidad.
+              </p>
+            </motion.div>
+
+            {/* RESUMEN Y BOTÓN PRINCIPAL */}
+            <motion.div variants={fadeInUp} className="alt-action-block">
               <div className="alt-total-row">
-                <span>Inversión estimada</span>
-                <span className="alt-total-amount">{selectedOption.price} <small>USD</small></span>
+                <div className="alt-total-left-group">
+                  <span className="alt-total-label-main">TOTAL</span>
+                  <span className="alt-total-subtext">
+                    ({quantity} {quantity === 1 ? "unidad" : "unidades"})
+                  </span>
+                </div>
+                <div className="alt-total-right">
+                  <span className="alt-total-amount">
+                    ${totalPrice.toFixed(2)}
+                  </span>
+                  <div className="alt-price-meta">
+                    <span className="alt-currency">USD</span>
+                    <span className="alt-shipping-tag">+ envío</span>
+                  </div>
+                </div>
               </div>
 
-              <button 
-                type="button" 
-                className="alt-luxury-cta" 
+              <button
+                type="button"
+                className="alt-luxury-cta"
                 onClick={handleWhatsApp}
               >
                 Solicitar por WhatsApp
               </button>
-
-              <p className="alt-foot-note">
-                Incluye pre-configuración de tu enlace de destino e instalación guiada.
-              </p>
-            </div>
-
-          </div>
-
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
-      {/* LIGHTBOX */}
+      {/* LIGHTBOX CON ANIMACIÓN DE APARICIÓN */}
       {lightbox && (
-        <div className="alt-lightbox-overlay" onClick={() => setLightbox(null)}>
-          <div className="alt-lightbox-container" onClick={(e) => e.stopPropagation()}>
-            <button type="button" className="alt-lightbox-close" onClick={() => setLightbox(null)}>
+        <motion.div 
+          className="alt-lightbox-overlay" 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setLightbox(null)}
+        >
+          <motion.div
+            className="alt-lightbox-container"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="alt-lightbox-close"
+              onClick={() => setLightbox(null)}
+            >
               <X size={18} />
             </button>
             <img src={lightbox} alt="Display Altaria Ampliado" />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </section>
   );

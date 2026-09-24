@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
+
+html{
+  user-select: none;
+}
 :root {
-  /* PALETA CORPORATIVA OFICIAL ALTARIA */
   --alt-cafe-profundo: #4A2E21;
   --alt-blanco-puro: #FFFFFF;
   --alt-crema-suave: #F8F3EA;
@@ -12,12 +15,11 @@
   --alt-font-mono: 'JetBrains Mono', monospace;
 }
 
-/* BASE & LAYOUT */
 .alt-luxury-section {
   background-color: var(--alt-crema-suave);
   color: var(--alt-cafe-profundo);
   min-height: 100vh;
-  padding: 48px 24px 90px 24px;
+  padding: 48px 24px 80px 24px;
   font-family: var(--alt-font-sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -27,16 +29,12 @@
   margin: 0 auto;
 }
 
-/* NAVEGACIÓN SUPERIOR */
 .alt-luxury-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .alt-luxury-back {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   color: var(--alt-cafe-profundo);
@@ -52,30 +50,22 @@
   opacity: 0.7;
 }
 
-.alt-brand-subtle {
-  font-family: var(--alt-font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  color: var(--alt-cafe-profundo);
-  font-weight: 600;
-}
-
-/* GRID PRINCIPAL DE 2 COLUMNAS */
 .alt-luxury-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 56px;
+  gap: 48px;
   align-items: start;
 }
 
 @media (max-width: 868px) {
   .alt-luxury-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 }
 
-/* GALERÍA DE IMÁGENES */
+/* GALERÍA */
+/* GALERÍA */
 .alt-gallery-wrapper {
   display: flex;
   flex-direction: column;
@@ -86,18 +76,20 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1;
-  background-color: var(--alt-blanco-puro);
+  background-color: #f9f3eb; /* Fondo limpio para rellenar los espacios si la imagen es horizontal */
   border-radius: 20px;
-  border: 1px solid var(--alt-beige-elegante);
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 12px 32px rgba(74, 46, 33, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .alt-main-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* CAMBIO CLAVE: Muestra la imagen completa sin recortarla */
+  padding: 12px; /* Opcional: da un pequeño respiro alrededor de la foto */
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -119,13 +111,57 @@
   justify-content: center;
   color: var(--alt-cafe-profundo);
   cursor: pointer;
-  transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(74, 46, 33, 0.08);
+  z-index: 2; /* Asegura que el botón quede por encima de la imagen */
 }
 
-.alt-expand-btn:hover {
-  background-color: var(--alt-cafe-profundo);
-  color: var(--alt-blanco-puro);
+.alt-thumb-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.alt-thumb-frame {
+  aspect-ratio: 1;
+  background: var(--alt-blanco-puro);
+  border: 1px solid var(--alt-beige-elegante);
+  border-radius: 12px;
+  padding: 4px; /* Espaciado interno para miniaturas */
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alt-thumb-frame.is-selected,
+.alt-thumb-frame:hover {
+  opacity: 1;
+  border-color: var(--alt-cafe-profundo);
+}
+
+.alt-thumb-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Asegura que la miniatura tampoco se corte */
+}
+.alt-expand-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: var(--alt-blanco-puro);
+  border: 1px solid var(--alt-beige-elegante);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--alt-cafe-profundo);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 46, 33, 0.08);
 }
 
 .alt-thumb-row {
@@ -150,7 +186,6 @@
 .alt-thumb-frame:hover {
   opacity: 1;
   border-color: var(--alt-cafe-profundo);
-  box-shadow: 0 4px 12px rgba(74, 46, 33, 0.1);
 }
 
 .alt-thumb-frame img {
@@ -159,9 +194,9 @@
   object-fit: cover;
 }
 
-/* ENCABEZADO Y ESPECIFICACIONES */
+/* ENCABEZADO */
 .alt-product-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .alt-luxury-tag {
@@ -176,7 +211,7 @@
 }
 
 .alt-product-title {
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -185,105 +220,82 @@
 }
 
 .alt-product-desc {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.6;
   color: var(--alt-cafe-profundo);
   opacity: 0.85;
-  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+.alt-features-bullet-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
+  list-style: none;
+  padding: 0;
   margin: 0;
-}
-
-.alt-specs-inline {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--alt-font-mono);
-  font-size: 0.75rem;
+  font-size: 0.84rem;
   color: var(--alt-cafe-profundo);
-  font-weight: 500;
-  margin-top: 20px;
+  opacity: 0.9;
 }
 
-.alt-dot {
-  color: var(--alt-beige-elegante);
+.alt-features-bullet-list li {
+  position: relative;
+  padding-left: 14px;
+}
+
+.alt-features-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--alt-cafe-profundo);
+  font-weight: bold;
 }
 
 .alt-section-divider {
   height: 1px;
   background-color: var(--alt-beige-elegante);
-  margin: 28px 0;
+  margin: 24px 0;
 }
 
-/* OPCIONES DE SELECCIÓN (CARDS) */
+/* SELECTOR DE CANTIDAD Y BLOQUES */
+.alt-selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .alt-group-label {
-  display: block;
   font-family: var(--alt-font-mono);
   font-size: 0.7rem;
   letter-spacing: 1.5px;
   color: var(--alt-gris-sofisticado);
   text-transform: uppercase;
   font-weight: 600;
-  margin-bottom: 16px;
 }
 
-.alt-options-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.alt-option-card {
+.alt-interactive-qty-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
+  padding: 16px 20px;
   background-color: var(--alt-blanco-puro);
-  border: 1.5px solid var(--alt-beige-elegante);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.25s ease;
+  border: 1.5px solid var(--alt-cafe-profundo);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(74, 46, 33, 0.06);
+  gap: 16px;
 }
 
-.alt-option-card:hover {
-  border-color: var(--alt-cafe-profundo);
-  transform: translateY(-1px);
-}
-
-.alt-option-card.is-active {
-  border-color: var(--alt-cafe-profundo);
-  background-color: var(--alt-blanco-puro);
-  box-shadow: 0 8px 24px rgba(74, 46, 33, 0.08);
-}
-
-.alt-option-left {
+.alt-qty-info-left {
   display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.alt-radio-check {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid var(--alt-beige-elegante);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: var(--alt-blanco-puro);
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-}
-
-.alt-option-card.is-active .alt-radio-check {
-  background: var(--alt-cafe-profundo);
-  border-color: var(--alt-cafe-profundo);
+  flex-direction: column;
+  gap: 2px;
 }
 
 .alt-option-title-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .alt-option-title {
@@ -294,9 +306,9 @@
 
 .alt-mini-tag {
   font-family: var(--alt-font-mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: 20px;
   background-color: var(--alt-cafe-profundo);
   color: var(--alt-blanco-puro);
@@ -304,45 +316,180 @@
 }
 
 .alt-option-units {
-  display: block;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--alt-gris-sofisticado);
-  margin-top: 2px;
+}
+
+/* Stepper moderno */
+.alt-qty-stepper-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--alt-crema-suave);
+  border: 1px solid var(--alt-beige-elegante);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.alt-step-btn {
+  background: var(--alt-blanco-puro);
+  border: 1px solid var(--alt-beige-elegante);
+  color: var(--alt-cafe-profundo);
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alt-step-btn:hover:not(:disabled) {
+  background-color: var(--alt-cafe-profundo);
+  color: var(--alt-blanco-puro);
+  border-color: var(--alt-cafe-profundo);
+}
+
+.alt-step-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.alt-qty-input-field {
+  width: 36px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-family: var(--alt-font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--alt-cafe-profundo);
+  outline: none;
+}
+
+.alt-qty-input-field::-webkit-outer-spin-button,
+.alt-qty-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.alt-qty-input-field {
+  -moz-appearance: textfield;
+}
+
+.alt-option-price-box {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
 }
 
 .alt-option-price {
   font-family: var(--alt-font-mono);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--alt-cafe-profundo);
 }
 
+.alt-option-price small {
+  font-size: 0.75rem;
+}
+
+.alt-shipping-note {
+  font-size: 0.7rem;
+  color: var(--alt-gris-sofisticado);
+}
+
+/* Píldoras de guía de precios rápidos */
+.alt-tiers-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.alt-tier-pill {
+  background-color: var(--alt-blanco-puro);
+  border: 1px solid var(--alt-beige-elegante);
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alt-tier-pill span {
+  font-size: 0.7rem;
+  color: var(--alt-gris-sofisticado);
+}
+
+.alt-tier-pill strong {
+  font-family: var(--alt-font-mono);
+  font-size: 0.78rem;
+  color: var(--alt-cafe-profundo);
+}
+
+.alt-tier-pill:hover,
+.alt-tier-pill.active {
+  border-color: var(--alt-cafe-profundo);
+  background-color: var(--alt-crema-suave);
+  box-shadow: 0 4px 12px rgba(74, 46, 33, 0.05);
+}
+
+.alt-bulk-notice {
+  font-size: 0.8rem;
+  color: #352016;
+  text-align: center;
+  margin: 0;
+}
+
+.alt-bulk-link {
+  color: var(--alt-cafe-profundo);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* RESUMEN Y BOTÓN PRINCIPAL */
 .alt-action-block {
-  margin-top: 32px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--alt-beige-elegante);
 }
 
 .alt-total-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 18px;
-  font-size: 0.88rem;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
   color: var(--alt-gris-sofisticado);
   font-weight: 500;
 }
 
+.alt-total-right {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
 .alt-total-amount {
   font-family: var(--alt-font-mono);
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   color: var(--alt-cafe-profundo);
   font-weight: 700;
 }
 
 .alt-total-amount small {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--alt-gris-sofisticado);
   font-weight: 400;
+}
+
+.alt-total-shipping {
+  font-size: 0.75rem;
+  color: var(--alt-gris-sofisticado);
 }
 
 .alt-luxury-cta {
@@ -350,9 +497,9 @@
   background-color: var(--alt-cafe-profundo);
   color: var(--alt-blanco-puro);
   border: none;
-  padding: 18px;
-  border-radius: 14px;
-  font-size: 0.92rem;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -366,15 +513,11 @@
   box-shadow: 0 12px 28px rgba(74, 46, 33, 0.22);
 }
 
-.alt-luxury-cta:active {
-  transform: translateY(0);
-}
-
 .alt-foot-note {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--alt-gris-sofisticado);
   text-align: center;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 /* LIGHTBOX */
@@ -413,4 +556,107 @@
   color: var(--alt-blanco-puro);
   cursor: pointer;
   padding: 8px;
+}
+
+/* --- BLOQUE DE TOTAL Y ACCIÓN (ESTILO LUJO REFINADO) --- */
+.alt-action-block {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: #FDFBF7; /* Un tono marfil ultraclaro y cálido */
+  border: 1px solid rgba(108, 78, 61, 0.15); /* Línea muy fina y sutil */
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(74, 46, 33, 0.03);
+}
+
+.alt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(108, 78, 61, 0.08);
+}
+
+.alt-total-left-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.alt-total-label-main {
+  font-family: var(--alt-font-sans, sans-serif); /* Fuente limpia y moderna */
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--alt-cafe-profundo);
+  letter-spacing: 2px; /* Espaciado elegante típico de alta gama */
+}
+
+.alt-total-subtext {
+  font-size: 0.82rem;
+  color: #8C7A6B;
+  font-weight: 400;
+}
+
+.alt-total-right {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.alt-total-amount {
+  font-family: var(--alt-font-mono, monospace);
+  font-size: 1.85rem;
+  color: var(--alt-cafe-profundo);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.alt-price-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.alt-currency {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8C7A6B;
+  letter-spacing: 0.5px;
+}
+
+.alt-shipping-tag {
+  font-size: 0.72rem;
+  color: #A38F7E;
+  font-weight: 500;
+}
+
+/* Botón principal estilizado */
+.alt-luxury-cta {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--alt-cafe-profundo, #4A2E21);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(74, 46, 33, 0.15);
+}
+
+.alt-luxury-cta:hover {
+  background-color: #382118;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(74, 46, 33, 0.25);
+}
+
+.alt-foot-note {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9E8B7C;
+  letter-spacing: 0.2px;
 }
