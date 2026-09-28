@@ -10,10 +10,10 @@ const productGallery = [
   { id: 1, url: "/imgs/especificaciones-blanca.jpeg", alt: "Display Altaria" },
   { id: 2, url: "/imgs/blanca-2.jpeg", alt: "Detalle Acabado" },
   { id: 3, url: "/imgs/blanca-3.jpeg", alt: "Uso NFC" },
-  { id: 4, url: "/imgs/blanco-4.jpeg", alt: "Vista Perspectiva" },
-  { id: 5, url: "/imgs/blanca-5.jpeg", alt: "Vista Perspectiva" },
-  { id: 6, url: "/imgs/blanca-7.jpeg", alt: "Vista Perspectiva" },
-  { id: 7, url: "/imgs/blanca-1.jpeg", alt: "Especificaciones del display" },
+  { id: 4, url: "/imgs/blanca-5.jpeg", alt: "Vista Perspectiva" },
+  { id: 5, url: "/imgs/blanca-1.jpeg", alt: "Especificaciones del display" },
+  
+  { id: 6, url: "/publico.jpeg", alt: "Especificaciones del display" },
 ];
 
 export const OrdenSection: React.FC = () => {
@@ -29,7 +29,7 @@ export const OrdenSection: React.FC = () => {
   const getUnitPrice = (qty: number) => {
     if (qty >= 5) return 19.99; // Pack Empresarial (5 a 10 pzas)
     if (qty >= 2) return 22.99; // Set Comercial (2 a 4 pzas)
-    return 24.99;             // Pieza Individual (1 pza)
+    return 24.99; // Pieza Individual (1 pza)
   };
 
   const unitPrice = getUnitPrice(quantity);
@@ -54,11 +54,11 @@ export const OrdenSection: React.FC = () => {
       return next;
     });
   };
-const handleWhatsApp = () => {
-    const text = 
+  const handleWhatsApp = () => {
+    const text =
       `Hola Altaria, deseo realizar mi pedido. ✨%0A%0A` +
       `📦 *Pedido:*%0A%0A` +
-      `• *Cantidad:* ${quantity} ${quantity === 1 ? 'display' : 'displays'}%0A` +
+      `• *Cantidad:* ${quantity} ${quantity === 1 ? "display" : "displays"}%0A` +
       `• *Nombre del Negocio:* %0A%0A` +
       `📍 *Datos de entrega:*%0A%0A` +
       `• *Nombre:* %0A` +
@@ -71,6 +71,12 @@ const handleWhatsApp = () => {
       `📌 Quedo pendiente para confirmar mi pedido y coordinar la entrega.`;
 
     window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+  };
+  const handleWhatsAppBulk = () => {
+    const message = encodeURIComponent(
+      "Hola Altaria, estoy interesado en conocer el precio especial de Altaria para más de 10 unidades. ✨\n\n- Nombre del negocio:\n- Link de mi perfil de Google:",
+    );
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
 
   // Variantes de animación para Framer Motion
@@ -97,7 +103,7 @@ const handleWhatsApp = () => {
     <section className="alt-luxury-section">
       <div className="alt-luxury-container">
         {/* NAVEGACIÓN CON ANIMACIÓN */}
-        <motion.nav 
+        <motion.nav
           className="alt-luxury-nav"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -112,7 +118,7 @@ const handleWhatsApp = () => {
         {/* GRID PRINCIPAL */}
         <div className="alt-luxury-grid">
           {/* GALERÍA */}
-          <motion.div 
+          <motion.div
             className="alt-gallery-wrapper"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -143,7 +149,7 @@ const handleWhatsApp = () => {
           </motion.div>
 
           {/* DETALLES Y SELECCIÓN */}
-          <motion.div 
+          <motion.div
             className="alt-details-wrapper"
             variants={staggerContainer}
             initial="hidden"
@@ -321,7 +327,7 @@ const handleWhatsApp = () => {
 
               <p className="alt-bulk-notice">
                 ¿Necesitas más de 10 unidades?{" "}
-                <span onClick={handleWhatsApp} className="alt-bulk-link">
+                <span onClick={handleWhatsAppBulk} className="alt-bulk-link">
                   Contáctanos
                 </span>{" "}
                 para conocer nuestro precio especial por cantidad.
@@ -362,8 +368,8 @@ const handleWhatsApp = () => {
 
       {/* LIGHTBOX CON ANIMACIÓN DE APARICIÓN */}
       {lightbox && (
-        <motion.div 
-          className="alt-lightbox-overlay" 
+        <motion.div
+          className="alt-lightbox-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

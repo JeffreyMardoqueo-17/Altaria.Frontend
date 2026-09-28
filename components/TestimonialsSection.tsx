@@ -20,8 +20,8 @@ interface TestimonialsProps {
 const defaultReviews: ReviewItem[] = [
   {
     id: 1,
-    name: "Cliente de Pastelería",
-    role: "Pastelería",
+    name: "Norma Romero",
+    role: "\"Dueña de Pastelería\"",
     avatar: "/imgs/testimonios/pasteleria.jpeg",
     comment:
       "Honestamente me ha funcionado bastante. A los clientes se les hace fácil dejar la reseña porque solo acercan el teléfono y ya les aparece. Antes tenía que explicarles cómo buscarnos en Google.",
@@ -29,8 +29,8 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 2,
-    name: "Cliente de Abogado",
-    role: "Despacho Jurídico",
+    name: "Daniel Peñate",
+    role: "\"Dueño de Despacho Jurídico\"",
     avatar: "/imgs/testimonios/abogado.jpeg",
     comment:
       "Se la compré a mi papá porque tiene su despacho y la verdad le ha ayudado bastante. Ahora sus clientes pueden dejar la reseña más fácil y poco a poco ha ido teniendo más reseñas en Google.",
@@ -38,8 +38,8 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 3,
-    name: "Cliente de Alquiler de Vehículos",
-    role: "Alquiler de Vehículos",
+    name: "Sandra Medrano",
+    role: "\"Dueña de Alquiler de Vehículos\"",
     avatar: "/imgs/testimonios/alquilerdevehiculos.jpeg",
     comment:
       "Me ha gustado bastante la placa, sobre todo porque es fácil de usar. En el alquiler de vehículos hay bastante competencia y las reseñas ayudan mucho cuando alguien está buscando dónde alquilar e incluso con personas de otro país.",
@@ -47,8 +47,8 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 4,
-    name: "Cliente de Salón de Belleza",
-    role: "Salón de Belleza",
+    name: "Briseida Sánchez",
+    role: "\"Dueña de Salón de Belleza\"",
     avatar: "/imgs/testimonios/salondebellesa.jpeg",
     comment:
       "La verdad me ha servido bastante. A mis clientas les digo que si me pueden dejar una reseñita, como solo acercan el teléfono, no se les hace complicado.",
@@ -56,17 +56,17 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 5,
-    name: "Cliente de Pupusería",
-    role: "Pupusería",
+    name: "Tommy Henríquez",
+    role: "\"Dueño de Pupusería\"",
     avatar: "/imgs/testimonios/pupuseria.jpeg",
     comment:
-      "Al principio pensé que iba a ser complicado para algunos clientes, pero para nada. La acercan al teléfono y listo. Ya varias personas me han dejado su reseña después de comer.",
+      "Soy De El Salvador, pero vivo en Guate, y cada vez que alguien de haya viene por aca, soy la primer pupusería que les sale gracias a las reseñas que me dejan mis clientes, lo mejor es que la mayoria de mis clientes me dejan buenas reseñas.",
     rating: 5,
   },
   {
     id: 6,
-    name: "Cliente de Tienda de Ropa",
-    role: "Tienda de Ropa",
+    name: "Alicia Martínez",
+    role: "\"Dueña de Tienda de Ropa\"",
     avatar: "/imgs/testimonios/tiendaderopa.jpeg",
     comment:
       "Me ha servido bastante. Cuando una clienta queda contenta con su compra, le digo que puede dejarme su reseña ahí mismo y la verdad varias sí lo hacen.",
@@ -74,8 +74,8 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 7,
-    name: "Cliente de Taquería",
-    role: "Taquería",
+    name: "José Torres",
+    role: "\"Dueño de Taquería\"",
     avatar: "/imgs/testimonios/taqueria.jpeg",
     comment:
       "Está bien práctica porque no tengo que estar explicándole a la gente cómo buscarnos en Google. Solo acercan el teléfono y dejan su reseña ahí mismo. Sí ayuda bastante.",
@@ -83,15 +83,14 @@ const defaultReviews: ReviewItem[] = [
   },
   {
     id: 8,
-    name: "Cliente de Zapatería",
-    role: "Tienda de Zapatos",
+    name: "Elias Sorto",
+    role: "\"Dueño de Zapatería\"",
     avatar: "/imgs/testimonios/zapateria.jpeg",
     comment:
       "Me ha gustado bastante tenerla en el negocio. Hay clientes que después de comprar me dicen que les gustaron los zapatos y ahí aprovecho para pedirles la reseña. La verdad sí me ha ayudado.",
     rating: 5,
   },
 ];
-
 export const TestimonialsSection: React.FC<TestimonialsProps> = ({
   reviews = defaultReviews,
   autoPlayInterval = 4000,

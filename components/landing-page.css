@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 html {
   scroll-behavior: smooth;
   user-select: none;
@@ -614,6 +615,53 @@ html {
   background: #7c9a70;
   box-shadow: 0 0 0 0 rgba(124, 154, 112, 0.45);
   animation: alt-dot-pulse 2s infinite;
+}
+
+/* -seccins del versiulo---- */
+
+/* Sección de versículo integrada, equilibrada y con la nueva tipografía */
+.alt-verse-section {
+  padding: 70px 20px;
+  text-align: center;
+  background: transparent; 
+  margin: 20px auto;
+  max-width: 900px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.alt-verse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.alt-verse-section .alt-eyebrow {
+  margin-bottom: 4px;
+  font-family: 'JetBrains Mono', monospace; /* Le da un toque técnico/distinto muy limpio al "HAGEO 2:4" */
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #776760;
+}
+
+.alt-verse-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--alt-coffee, #2b2320);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.alt-verse-text em {
+  font-style: italic;
+  font-weight: 400; /* Mantiene el toque marcado y diferenciado */
+}
+
+.alt-verse-text span {
+  font-weight: 400;
+  color: #776760;
+  font-style: italic;
 }
 
 .alt-section {

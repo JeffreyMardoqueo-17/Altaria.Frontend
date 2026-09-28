@@ -163,70 +163,70 @@ export default function LandingPage() {
 
   return (
     <main className="landing-page alt-landing">
-     <div className={`alt-nav-shell ${isScrolled ? "is-scrolled" : ""}`}>
-  <header className="alt-nav">
-    {/* Logo visible tanto en escritorio como en celular */}
-    <a
-      href="#hero-title"
-      onClick={(e) => handleSmoothScroll(e, "hero-title")}
-      className="alt-brand"
-      aria-label="Altaria, inicio"
-    >
-      <AltariaLogo className="alt-brand-mark" color="#4a2e21" />
-      <span></span>
-    </a>
+      <div className={`alt-nav-shell ${isScrolled ? "is-scrolled" : ""}`}>
+        <header className="alt-nav">
+          {/* Logo visible tanto en escritorio como en celular */}
+          <a
+            href="#hero-title"
+            onClick={(e) => handleSmoothScroll(e, "hero-title")}
+            className="alt-brand"
+            aria-label="Altaria, inicio"
+          >
+            <AltariaLogo className="alt-brand-mark" color="#4a2e21" />
+            <span></span>
+          </a>
 
-    {/* Menú de Enlaces */}
-    <nav
-      className={`alt-nav-links ${isMenuOpen ? "is-open" : ""}`}
-      aria-label="Navegación principal"
-    >
-      <a
-        href="#soluciones"
-        onClick={(e) => {
-          handleSmoothScroll(e, "soluciones");
-          setIsMenuOpen(false);
-        }}
-      >
-        Conoce Altaria
-      </a>
-      <a
-        href="#como-funciona"
-        onClick={(e) => {
-          handleSmoothScroll(e, "como-funciona");
-          setIsMenuOpen(false);
-        }}
-      >
-        Cómo funciona
-      </a>
-      <a
-        href="#testimonios"
-        onClick={(e) => {
-          handleSmoothScroll(e, "testimonios");
-          setIsMenuOpen(false);
-        }}
-      >
-        Reseñas
-      </a>
-      <a href="/orden" onClick={() => setIsMenuOpen(false)}>
-        Realizar pedido
-      </a>
-    </nav>
+          {/* Menú de Enlaces */}
+          <nav
+            className={`alt-nav-links ${isMenuOpen ? "is-open" : ""}`}
+            aria-label="Navegación principal"
+          >
+            <a
+              href="#soluciones"
+              onClick={(e) => {
+                handleSmoothScroll(e, "soluciones");
+                setIsMenuOpen(false);
+              }}
+            >
+              Conoce Altaria
+            </a>
+            <a
+              href="#como-funciona"
+              onClick={(e) => {
+                handleSmoothScroll(e, "como-funciona");
+                setIsMenuOpen(false);
+              }}
+            >
+              Cómo funciona
+            </a>
+            <a
+              href="#testimonios"
+              onClick={(e) => {
+                handleSmoothScroll(e, "testimonios");
+                setIsMenuOpen(false);
+              }}
+            >
+              Reseñas
+            </a>
+            <a href="/orden" onClick={() => setIsMenuOpen(false)}>
+              Realizar pedido
+            </a>
+          </nav>
 
-    {/* Acciones (Botón Hamburguesa y CTA opcional) */}
-    <div className="alt-nav-actions">
-      <button
-        className="alt-menu-button"
-        type="button"
-        aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
-        aria-expanded={isMenuOpen}
-        onClick={() => setIsMenuOpen((open) => !open)}
-      >
-        {isMenuOpen ? <X size={21} /> : <Menu size={21} />}
-      </button>
-    </div>
-  </header>
-</div>
+          {/* Acciones (Botón Hamburguesa y CTA opcional) */}
+          <div className="alt-nav-actions">
+            <button
+              className="alt-menu-button"
+              type="button"
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              {isMenuOpen ? <X size={21} /> : <Menu size={21} />}
+            </button>
+          </div>
+        </header>
+      </div>
 
       <section className="alt-hero" aria-labelledby="hero-title">
         <motion.div
@@ -236,7 +236,7 @@ export default function LandingPage() {
           transition={{ staggerChildren: 0.15 }}
         >
           <motion.p variants={fadeInUp} className="alt-eyebrow uppercase">
-            La mejor publicidad tambien vende
+            Tu reputación también vende
           </motion.p>
           <motion.h1 id="hero-title" variants={fadeInUp}>
             Haz tu negocio <em>imposible</em> de olvidar.
@@ -250,12 +250,14 @@ export default function LandingPage() {
           </motion.p>
           <motion.div variants={fadeInUp} className="alt-hero-actions">
             <a
-              className="alt-button alt-button-dark uppercase"
+              className="alt-button alt-button-cream"
+              // href={whatsappUrl}
               href="/orden"
               target="_blank"
               rel="noreferrer"
             >
-              Realizar pedido <ArrowRight size={17} />
+              <MessageCircle size={20} /> Realizar pedido{" "}
+              <ArrowRight size={17} />
             </a>
           </motion.div>
           <motion.div variants={fadeInUp} className="alt-features-grid">
@@ -398,101 +400,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="como-funciona" className="alt-process">
-        {/* LADO IZQUIERDO: Contenido y Pasos */}
-        <div className="alt-process-content">
-          <div className="alt-process-intro alt-reveal">
-            <p className="alt-eyebrow">ASÍ DE FÁCIL</p>
-            <h2>
-              De una visita a una <em>conexión.</em>
-            </h2>
-            <p>
-              Una interacción intuitiva para tus clientes y de alto impacto para
-              tu negocio.
-            </p>
-            <a
-            className="alt-button alt-button-cream"
-            // href={whatsappUrl}
-            href="/orden"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageCircle size={20} /> Realizar pedido{" "}
-            <ArrowRight size={17} />
-          </a>
-          </div>
-
-          <div className="alt-process-flow alt-reveal alt-reveal-delay-1">
-            <div className="alt-flow-line" />
-
-            <article>
-              <span className="alt-step">01</span>
-              <MousePointer2 size={21} />
-              <h3>Acerca o escanea</h3>
-              <p>
-                Tu cliente acerca su teléfono a Altaria o escanea el código QR.
-              </p>
-            </article>
-
-            <article>
-              <span className="alt-step">02</span>
-              <Store size={21} />
-              <h3>Acceso directo</h3>
-              <p>
-                Se abre automáticamente el enlace que configuramos de reseñas
-                para tu negocio.
-              </p>
-            </article>
-
-            <article>
-              <span className="alt-step">03</span>
-              <Sparkles size={21} />
-              <h3>Deja tu reseña</h3>
-              <p>
-                En segundos, tu cliente puede calificar y compartir su
-                experiencia. Más reseñas, más confianza y mayor visibilidad para
-                tu negocio en Google.
-              </p>
-            </article>
-          </div>
-        </div>
-
-        {/* LADO DERECHO: Collage de Productos Elegante */}
-        <div className="alt-process-media alt-reveal alt-reveal-delay-2">
-          <div className="alt-collage-container">
-            {/* Tarjeta / Foto Principal */}
-            <div className="alt-collage-card alt-card-main">
-              <img
-                src="/imgs/blanco-4.jpeg"
-                alt="Display Altaria Principal"
-                className="alt-collage-img"
-              />
-            </div>
-
-            {/* Tarjeta / Foto Secundaria (Superpuesta) */}
-            <div className="alt-collage-card alt-card-secondary">
-              <img
-                src="/imgs/blanca-3.jpeg"
-                alt="Display en entorno real"
-                className="alt-collage-img"
-              />
-            </div>
-
-            {/* Tarjeta Detalle / Accent */}
-            <div className="alt-collage-card alt-card-tertiary">
-              <img
-                src="/imgs/blanca-2.jpeg"
-                alt="Detalle de acabado y NFC"
-                className="alt-collage-img"
-              />
-            </div>
-
-            {/* Sombra de ambiente sutil para dar profundidad */}
-            <div className="alt-collage-glow" />
-          </div>
+      {/* Sección de impacto: Hageo 2:4 */}
+      <section className="alt-verse-section alt-reveal">
+        <div className="alt-verse-container">
+          <span className="alt-eyebrow">HAGEO 2:4</span>
+          <h2 className="alt-verse-text">
+            “Esfuérzate… <em>y trabajad;</em> porque yo estoy con vosotros,{" "}
+            <span>dice Jehová de los ejércitos.</span>”
+          </h2>
         </div>
       </section>
-
       <div id="testimonios">
         <TestimonialsSection autoPlayInterval={4000} />
       </div>
@@ -515,7 +432,8 @@ export default function LandingPage() {
               Las buenas experiencias <em>merecen ser compartidas.</em>
             </h2>
             <p>
-              Selecciona la cantidad de displays que necesita tu negocio y descubre cómo llevar más experiencias de tus clientes a Google.
+              Selecciona la cantidad de displays que necesita tu negocio y
+              descubre cómo llevar más experiencias de tus clientes a Google.
             </p>
           </div>
           <a
@@ -525,8 +443,7 @@ export default function LandingPage() {
             target="_blank"
             rel="noreferrer"
           >
-            <MessageCircle size={20} /> Realizar pedido{" "}
-            <ArrowRight size={17} />
+            <MessageCircle size={20} /> Realizar pedido <ArrowRight size={17} />
           </a>
         </div>
       </section>

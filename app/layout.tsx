@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 
 // Configuración completa de Metadatos y Open Graph para WhatsApp / Redes Sociales
 export const metadata: Metadata = {
-  title: "Altaria",
-  description: "Displays inteligentes con tecnología NFC y código QR para convertir visitas en nuevas oportunidades y conseguir más reseñas en Google. Sin mensualidades.",
+  title: "Altaria | Una pequeña pieza. Una gran diferencia.",
+  description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
   generator: "Next.js",
   applicationName: "Altaria",
   authors: [{ name: "Altaria Team" }],
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_SV",
-    url: "https://altariaa", // Reemplaza con tu dominio final cuando esté en producción
+    url: "https://altariaa", 
     title: "Altaria",
-    description: "Haz tu negocio imposible de olvidar. Consigue más reseñas en Google con tecnología NFC y código QR de forma rápida y sencilla.",
+    description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
     siteName: "Altaria",
     images: [
       {
-        url: "/logo.jpeg", // Archivo ubicado en tu carpeta /public/logo.jpeg
+        url: "/publico.jpeg", // Archivo ubicado en tu carpeta /public/publico.jpeg
         width: 800,
         height: 800,
         alt: "Logo Altaria - Displays Inteligentes",
@@ -47,15 +47,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Altaria",
-    description: "Haz tu negocio imposible de olvidar. Consigue más reseñas en Google con tecnología NFC y código QR.",
-    images: ["/logo.jpeg"],
+    description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
+    images: ["/publico.jpeg"],
   },
 
   // Iconos y Favicon
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/logo.jpeg",
+    apple: "/publico.jpeg",
   },
 };
 
