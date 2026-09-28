@@ -350,7 +350,7 @@ export const OrdenSection: React.FC = () => {
                 className="alt-luxury-cta"
                 onClick={handleWhatsApp}
               >
-                Solicitar por WhatsApp
+                Ordenar por WhatsApp
               </button>
             </motion.div>
           </motion.div>

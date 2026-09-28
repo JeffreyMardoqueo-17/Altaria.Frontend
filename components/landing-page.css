@@ -753,11 +753,11 @@ html {
 
 .alt-text-link-light {
   border-color: #9b725a;
-  color: #9b725a;
+  color: var(--alt-coffee);
 }
 
 .alt-text-link-light:hover {
-  border-color: #9b725a;
+  border-color: #c86c37;
 }
 
 .alt-process-flow {

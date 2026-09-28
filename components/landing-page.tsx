@@ -411,12 +411,15 @@ export default function LandingPage() {
               tu negocio.
             </p>
             <a
-              className="alt-text-link alt-text-link-light"
-              href="/orden"
-              // onClick={(e) => handleSmoothScroll(e, "contacto")}
-            >
-              Realizar pedido <ArrowRight size={16} />
-            </a>
+            className="alt-button alt-button-cream"
+            // href={whatsappUrl}
+            href="/orden"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MessageCircle size={20} /> Realizar pedido{" "}
+            <ArrowRight size={17} />
+          </a>
           </div>
 
           <div className="alt-process-flow alt-reveal alt-reveal-delay-1">

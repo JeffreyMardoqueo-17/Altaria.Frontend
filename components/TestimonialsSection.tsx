@@ -20,29 +20,74 @@ interface TestimonialsProps {
 const defaultReviews: ReviewItem[] = [
   {
     id: 1,
-    name: "Beatriz \"Taty\" Menjívar",
-    role: "Propietaria de Café Las Margaritas",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    name: "Cliente de Pastelería",
+    role: "Pastelería",
+    avatar: "/imgs/testimonios/pasteleria.jpeg",
     comment:
-      "Al principio tenía dudas de si los clientes se animarían a dejar su opinión, pero es super sencillo. Nuestra calificación ha subido muchísimo y se ve excelente en la barra.",
+      "Honestamente me ha funcionado bastante. A los clientes se les hace fácil dejar la reseña porque solo acercan el teléfono y ya les aparece. Antes tenía que explicarles cómo buscarnos en Google.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Alejandro Interiano",
-    role: "Encargado en Pupusería La Bendición",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    name: "Cliente de Abogado",
+    role: "Despacho Jurídico",
+    avatar: "/imgs/testimonios/abogado.jpeg",
     comment:
-      "Es una gran herramienta para el local. Los clientes ven el display en la caja, acercan su celular y en segundos nos dejan su reseña. Nos ha ayudado a destacar un montón en Google.",
+      "Se la compré a mi papá porque tiene su despacho y la verdad le ha ayudado bastante. Ahora sus clientes pueden dejar la reseña más fácil y poco a poco ha ido teniendo más reseñas en Google.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Mauricio \"Chele\" Palacios",
-    role: "Dueño de Car Wash Rápido y Limpio",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    name: "Cliente de Alquiler de Vehículos",
+    role: "Alquiler de Vehículos",
+    avatar: "/imgs/testimonios/alquilerdevehiculos.jpeg",
     comment:
-      "Mientras los clientes esperan la entrega de su vehículo, aprovechan para calificar el servicio con el NFC. La cantidad de reseñas positivas aumentó desde la primera semana.",
+      "Me ha gustado bastante la placa, sobre todo porque es fácil de usar. En el alquiler de vehículos hay bastante competencia y las reseñas ayudan mucho cuando alguien está buscando dónde alquilar e incluso con personas de otro país.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Cliente de Salón de Belleza",
+    role: "Salón de Belleza",
+    avatar: "/imgs/testimonios/salondebellesa.jpeg",
+    comment:
+      "La verdad me ha servido bastante. A mis clientas les digo que si me pueden dejar una reseñita, como solo acercan el teléfono, no se les hace complicado.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Cliente de Pupusería",
+    role: "Pupusería",
+    avatar: "/imgs/testimonios/pupuseria.jpeg",
+    comment:
+      "Al principio pensé que iba a ser complicado para algunos clientes, pero para nada. La acercan al teléfono y listo. Ya varias personas me han dejado su reseña después de comer.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Cliente de Tienda de Ropa",
+    role: "Tienda de Ropa",
+    avatar: "/imgs/testimonios/tiendaderopa.jpeg",
+    comment:
+      "Me ha servido bastante. Cuando una clienta queda contenta con su compra, le digo que puede dejarme su reseña ahí mismo y la verdad varias sí lo hacen.",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "Cliente de Taquería",
+    role: "Taquería",
+    avatar: "/imgs/testimonios/taqueria.jpeg",
+    comment:
+      "Está bien práctica porque no tengo que estar explicándole a la gente cómo buscarnos en Google. Solo acercan el teléfono y dejan su reseña ahí mismo. Sí ayuda bastante.",
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "Cliente de Zapatería",
+    role: "Tienda de Zapatos",
+    avatar: "/imgs/testimonios/zapateria.jpeg",
+    comment:
+      "Me ha gustado bastante tenerla en el negocio. Hay clientes que después de comprar me dicen que les gustaron los zapatos y ahí aprovecho para pedirles la reseña. La verdad sí me ha ayudado.",
     rating: 5,
   },
 ];
