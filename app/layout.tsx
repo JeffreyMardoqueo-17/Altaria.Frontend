@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 
 // Configuración completa de Metadatos y Open Graph para WhatsApp / Redes Sociales
 export const metadata: Metadata = {
+  metadataBase: new URL("https://altariaa.com"), 
   title: "Altaria | Una pequeña pieza. Una gran diferencia.",
   description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
   generator: "Next.js",
@@ -25,17 +26,16 @@ export const metadata: Metadata = {
   authors: [{ name: "Altaria Team" }],
   keywords: ["NFC", "Código QR", "Google Reviews", "Reseñas Google", "Displays Inteligentes", "Marketing para Negocios", "El Salvador"],
   
-  // Configuración para WhatsApp, Facebook y LinkedIn (Open Graph)
   openGraph: {
     type: "website",
     locale: "es_SV",
-    url: "https://altariaa", 
+    url: "https://altariaa.com", 
     title: "Altaria | Una pequeña pieza. Una gran diferencia.",
     description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
     siteName: "Altaria",
     images: [
       {
-        url: "/publico.jpeg",
+        url: "https://altariaa.com/publico.jpeg", // obligatoria para redes
         width: 800,
         height: 800,
         alt: "Logo Altaria - Displays Inteligentes",
@@ -43,23 +43,19 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Configuración para Twitter Cards
   twitter: {
     card: "summary_large_image",
     title: "Altaria | Una pequeña pieza. Una gran diferencia.",
     description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
-    images: ["/publico.jpeg"],
+    images: ["https://altariaa.com/publico.jpeg"], //
   },
 
-  // Iconos y Favicon
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/publico.jpeg",
+    shortcut: "/favicon.ico",
     apple: "/publico.jpeg",
-
   },
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
