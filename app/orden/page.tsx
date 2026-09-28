@@ -9,11 +9,12 @@ import "./OrdenSection.css";
 const productGallery = [
   { id: 1, url: "/imgs/especificaciones-blanca.jpeg", alt: "Display Altaria" },
   { id: 2, url: "/imgs/blanca-2.jpeg", alt: "Detalle Acabado" },
-  { id: 3, url: "/imgs/blanca-3.jpeg", alt: "Uso NFC" },
-  { id: 4, url: "/imgs/blanca-5.jpeg", alt: "Vista Perspectiva" },
+  { id: 3, url: "/imgs/blanca-5.jpeg", alt: "Uso NFC" },
+  { id: 4, url: "/imgs/blanca-6.jpeg", alt: "Vista Perspectiva" },
   { id: 5, url: "/imgs/blanca-1.jpeg", alt: "Especificaciones del display" },
-  
-  { id: 6, url: "/publico.jpeg", alt: "Especificaciones del display" },
+  { id: 6, url: "/imgs/blanca-4.jpeg", alt: "Imagen del display" },
+  { id: 7, url: "/imgs/blanca-7.jpeg", alt: "Imagen del display" },
+  { id: 8, url: "/imgs/blanca-3.jpeg", alt: "Imagen del display" },
 ];
 
 export const OrdenSection: React.FC = () => {

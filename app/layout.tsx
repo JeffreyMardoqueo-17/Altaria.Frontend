@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_SV",
     url: "https://altariaa", 
-    title: "Altaria",
+    title: "Altaria | Una pequeña pieza. Una gran diferencia.",
     description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
     siteName: "Altaria",
     images: [
       {
-        url: "/publico.jpeg", // Archivo ubicado en tu carpeta /public/publico.jpeg
+        url: "/publico.jpeg",
         width: 800,
         height: 800,
         alt: "Logo Altaria - Displays Inteligentes",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   // Configuración para Twitter Cards
   twitter: {
     card: "summary_large_image",
-    title: "Altaria",
+    title: "Altaria | Una pequeña pieza. Una gran diferencia.",
     description: "En segundos, tu cliente puede calificar y compartir su experiencia. Más reseñas, más confianza y mayor visibilidad para tu negocio en Google.",
     images: ["/publico.jpeg"],
   },
@@ -54,8 +54,9 @@ export const metadata: Metadata = {
   // Iconos y Favicon
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    shortcut: "/publico.jpeg",
     apple: "/publico.jpeg",
+
   },
 };
 
