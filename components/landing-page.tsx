@@ -24,7 +24,7 @@ import {
 const whatsappUrl =
   "https://wa.me/50362736006?text=" +
   encodeURIComponent(
-    "Hola Altaria, me gustaría realizar un pedido y conocer las opciones disponibles.",
+    "Hola Altaria, quisiera conocer cómo funciona y saber cómo puedo realizar mi pedido. ✨",
   );
 import { AltariaLogo } from "./ui/AltariaLogo";
 import React from "react";
