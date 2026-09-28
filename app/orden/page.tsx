@@ -23,7 +23,7 @@ export const OrdenSection: React.FC = () => {
   // Estado central: cantidad de displays (1 a 10)
   const [quantity, setQuantity] = useState<number>(1);
 
-  const whatsappNumber = "50369842090";
+  const whatsappNumber = "50362736006";
 
   // Lógica de precios escalonados (tiers)
   const getUnitPrice = (qty: number) => {
@@ -54,18 +54,21 @@ export const OrdenSection: React.FC = () => {
       return next;
     });
   };
-
-  const handleWhatsApp = () => {
+const handleWhatsApp = () => {
     const text = 
       `Hola Altaria, deseo realizar mi pedido. ✨%0A%0A` +
+      `📦 *Pedido:*%0A%0A` +
       `• *Cantidad:* ${quantity} ${quantity === 1 ? 'display' : 'displays'}%0A` +
-      `• *Negocio:* %0A` +
-      `• *Google:* %0A%0A` +
-      `• *Teléfono:* %0A` +
+      `• *Nombre del Negocio:* %0A%0A` +
+      `📍 *Datos de entrega:*%0A%0A` +
       `• *Nombre:* %0A` +
-      `• *Dirección de entrega (departamento/municipio):* %0A%0A` +
-      `*Total:* $${totalPrice.toFixed(2)} + costo de envío según zona de entrega.%0A%0A` +
-      `📍 Quedo pendiente para continuar con el pedido y coordinar la entrega.`;
+      `• *Teléfono:* %0A` +
+      `• *Departamento:* %0A` +
+      `• *Municipio:* %0A` +
+      `• *Dirección:* %0A%0A` +
+      `💳 *Total:* $${totalPrice.toFixed(2)}%0A` +
+      `Envío según zona de entrega.%0A%0A` +
+      `📌 Quedo pendiente para confirmar mi pedido y coordinar la entrega.`;
 
     window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
   };

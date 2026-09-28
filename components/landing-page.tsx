@@ -22,7 +22,7 @@ import {
   X,
 } from "lucide-react";
 const whatsappUrl =
-  "https://wa.me/50369842090?text=" +
+  "https://wa.me/50362736006?text=" +
   encodeURIComponent(
     "Hola Altaria, me gustaría realizar un pedido y conocer las opciones disponibles.",
   );
