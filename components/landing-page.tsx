@@ -267,7 +267,7 @@ export default function LandingPage() {
               </div>
               <div className="alt-feature-content">
                 <h3>QR único</h3>
-                <p>Exclusivo como tu negocio.</p>
+                <p>Exclusivo para tu negocio</p>
               </div>
             </div>
 
@@ -410,6 +410,101 @@ export default function LandingPage() {
           </h2>
         </div>
       </section>
+       <section id="como-funciona" className="alt-process">
+        {/* LADO IZQUIERDO: Contenido y Pasos */}
+        <div className="alt-process-content">
+          <div className="alt-process-intro alt-reveal">
+            <p className="alt-eyebrow">ASÍ DE FÁCIL</p>
+            <h2>
+              De una visita a una <em>conexión.</em>
+            </h2>
+            <p>
+              Una interacción intuitiva para tus clientes y de alto impacto para
+              tu negocio.
+            </p>
+            <a
+            className="alt-button alt-button-cream"
+            // href={whatsappUrl}
+            href="/orden"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MessageCircle size={20} /> Realizar pedido{" "}
+            <ArrowRight size={17} />
+          </a>
+          </div>
+
+          <div className="alt-process-flow alt-reveal alt-reveal-delay-1">
+            <div className="alt-flow-line" />
+
+            <article>
+              <span className="alt-step">01</span>
+              <MousePointer2 size={21} />
+              <h3>Acerca o escanea</h3>
+              <p>
+                Tu cliente acerca su teléfono a Altaria o escanea el código QR.
+              </p>
+            </article>
+
+            <article>
+              <span className="alt-step">02</span>
+              <Store size={21} />
+              <h3>Acceso directo</h3>
+              <p>
+                Se abre automáticamente el enlace que configuramos de reseñas
+                para tu negocio.
+              </p>
+            </article>
+
+            <article>
+              <span className="alt-step">03</span>
+              <Sparkles size={21} />
+              <h3>Deja tu reseña</h3>
+              <p>
+                En segundos, tu cliente puede calificar y compartir su
+                experiencia. Más reseñas, más confianza y mayor visibilidad para
+                tu negocio en Google.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        {/* LADO DERECHO: Collage de Productos Elegante */}
+        <div className="alt-process-media alt-reveal alt-reveal-delay-2">
+          <div className="alt-collage-container">
+            {/* Tarjeta / Foto Principal */}
+            <div className="alt-collage-card alt-card-main">
+              <img
+                src="/imgs/blanca-6.jpeg"
+                alt="Display Altaria Principal"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Tarjeta / Foto Secundaria (Superpuesta) */}
+            <div className="alt-collage-card alt-card-secondary">
+              <img
+                src="/imgs/blanca-3.jpeg"
+                alt="Display en entorno real"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Tarjeta Detalle / Accent */}
+            <div className="alt-collage-card alt-card-tertiary">
+              <img
+                src="/imgs/blanca-4.jpeg"
+                alt="Detalle de acabado y NFC"
+                className="alt-collage-img"
+              />
+            </div>
+
+            {/* Sombra de ambiente sutil para dar profundidad */}
+            <div className="alt-collage-glow" />
+          </div>
+        </div>
+      </section>
+
       <div id="testimonios">
         <TestimonialsSection autoPlayInterval={4000} />
       </div>
