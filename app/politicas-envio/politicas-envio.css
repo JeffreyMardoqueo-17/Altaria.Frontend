@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html {
+  user-select: none;
+}
+
+:root {
+  --alt-cafe-profundo: #4A2E21;
+  --alt-blanco-puro: #FFFFFF;
+  --alt-crema-suave: #F8F3EA;
+  --alt-beige-elegante: #DCC9B3;
+  --alt-gris-sofisticado: #9EA3A8;
+
+  --alt-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --alt-font-mono: 'JetBrains Mono', monospace;
+}
+
+.envio-container {
+  background-color: var(--alt-crema-suave);
+  color: var(--alt-cafe-profundo);
+  font-family: var(--alt-font-sans);
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+}
+
+.envio-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Botón Volver */
+.envio-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--alt-cafe-profundo);
+  font-family: var(--alt-font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.envio-back-btn:hover {
+  opacity: 0.75;
+  transform: translateX(-3px);
+}
+
+.envio-back-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.envio-header {
+  border-bottom: 1px solid var(--alt-beige-elegante);
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.envio-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--alt-cafe-profundo);
+  margin-bottom: 0.5rem;
+}
+
+.envio-subtitle {
+  font-size: 1.05rem;
+  color: #5a4033;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.envio-date {
+  font-family: var(--alt-font-mono);
+  font-size: 0.875rem;
+  color: var(--alt-gris-sofisticado);
+}
+
+.envio-body {
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.envio-section {
+  margin-bottom: 2rem;
+}
+
+.envio-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--alt-cafe-profundo);
+}
+
+.envio-paragraph {
+  color: #5a4033;
+  margin-bottom: 1rem;
+}

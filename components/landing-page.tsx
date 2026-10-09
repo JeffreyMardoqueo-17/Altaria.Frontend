@@ -410,7 +410,7 @@ export default function LandingPage() {
           </h2>
         </div>
       </section>
-       <section id="como-funciona" className="alt-process">
+      <section id="como-funciona" className="alt-process">
         {/* LADO IZQUIERDO: Contenido y Pasos */}
         <div className="alt-process-content">
           <div className="alt-process-intro alt-reveal">
@@ -423,15 +423,15 @@ export default function LandingPage() {
               tu negocio.
             </p>
             <a
-            className="alt-button alt-button-cream"
-            // href={whatsappUrl}
-            href="/orden"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageCircle size={20} /> Realizar pedido{" "}
-            <ArrowRight size={17} />
-          </a>
+              className="alt-button alt-button-cream"
+              // href={whatsappUrl}
+              href="/orden"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle size={20} /> Realizar pedido{" "}
+              <ArrowRight size={17} />
+            </a>
           </div>
 
           <div className="alt-process-flow alt-reveal alt-reveal-delay-1">
@@ -544,20 +544,30 @@ export default function LandingPage() {
       </section>
 
       <footer className="alt-footer">
-        {/* También puedes aplicar el scroll suave en el footer si gustas */}
+        {/* Marca/Logo Altaria */}
         <a
           href="#hero-title"
           onClick={(e) => handleSmoothScroll(e, "hero-title")}
           className="alt-brand alt-footer-brand"
         >
           <AltariaLogo className="alt-brand-mark" color="#4a2e21" />
-
           <span>
             {/* <strong>ALTARIA</strong> */}
             {/* <small>Conecta · Exhibe · Crece</small> */}
           </span>
         </a>
+
+        {/* Enlaces de políticas en horizontal */}
+        <nav className="alt-footer-links">
+          <Link href="/terminos-condiciones">Términos y condiciones</Link>
+          <Link href="/privacidad">Política de privacidad</Link>
+          <Link href="/politicas-envio">Política de envíos</Link>
+        </nav>
+
+        {/* Copyright */}
         <p>© {new Date().getFullYear()} | Altaria</p>
+
+        {/* Acceso administrativo */}
         <Link href="/administracion">
           Acceso administrativo <ArrowRight size={14} />
         </Link>

@@ -559,6 +559,26 @@ html {
   object-fit: cover;
   transition: transform 0.5s ease;
 }
+/* Ajuste para elevar el arte visual del Hero */
+.alt-hero-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Esto eleva todo el bloque (imagen, sol, órbitas y sombras) */
+  margin-top: -180px; /* Ajusta este valor (-20px a -50px) según qué tan arriba lo quiere */
+  
+  /* Alineación interna */
+  align-self: center; 
+}
+
+/* Opcional: si en móviles necesitas que vuelva a su posición original */
+@media (max-width: 768px) {
+  .alt-hero-art {
+    margin-top: 0;
+  }
+}
 .alt-display-bottom {
   position: relative;
   z-index: 1;
@@ -621,14 +641,14 @@ html {
 
 /* Sección de versículo integrada, equilibrada y con la nueva tipografía */
 .alt-verse-section {
-  padding: 70px 20px;
+  /* Reducimos el padding superior a 20px y el inferior a 40px */
+  padding: 0px 20px 0 20px;
   text-align: center;
   background: transparent; 
-  margin: 20px auto;
+  margin: -30px auto 20px auto; 
   max-width: 900px;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
 .alt-verse-container {
   display: flex;
   flex-direction: column;
@@ -1128,6 +1148,8 @@ html {
   background: #fff;
   box-shadow: 0 18px 30px rgba(74, 46, 33, 0.18);
 }
+
+
 .alt-footer {
   display: flex;
   align-items: center;
@@ -1138,18 +1160,59 @@ html {
   margin: 0 auto;
   padding: 25px 32px;
 }
+
 .alt-footer-brand .alt-brand-mark {
   width: 150px;
   height: 150px;
 }
+
 .alt-footer-brand strong {
   font-size: 12px;
+}
+/* Estilos para los enlaces del footer en horizontal */
+.alt-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.alt-footer-links a {
+  position: relative;
+  color: #6c564a;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+
+/* Línea de subrayado suave animación */
+.alt-footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--alt-coffee, #4a2e21);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+}
+
+.alt-footer-links a:hover {
+  color: var(--alt-coffee, #4a2e21);
+}
+
+.alt-footer-links a:hover::after {
+  width: 100%;
 }
 .alt-footer p {
   margin: 0;
   color: #8b7c73;
   font-size: 10px;
 }
+
 .alt-footer > a:last-child {
   display: inline-flex;
   align-items: center;
@@ -1159,8 +1222,9 @@ html {
   font-weight: 800;
   text-decoration: none;
 }
+
 .alt-footer > a:last-child:hover {
-  color: var(--alt-coffee);
+  color: var(--alt-coffee, #4a2e21);
 }
 .alt-whatsapp-fab {
   position: fixed;
