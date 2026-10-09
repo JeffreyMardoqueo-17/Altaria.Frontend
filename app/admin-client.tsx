@@ -70,9 +70,9 @@ type AdminSection =
   | "stock";
 
 const statusLabels = ["Disponible", "Activo", "Desactivado"];
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"; //debo de descomentar  esto despues :v
+// const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080"; //debo de descomentar  esto despues :v
 
-// const API_URL = "http://localhost:8080"
+const API_URL = "http://localhost:8080";
 async function api<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const isFormData = options.body instanceof FormData;
 
@@ -802,6 +802,7 @@ function BusinessesView({
       />
       {selected && (
         <BusinessDetail
+          key={selected.id}
           business={selected}
           onClose={() => setSelected(null)}
           onNotice={onNotice}
@@ -821,7 +822,7 @@ function BusinessDetail({
   business: Business;
   onClose: () => void;
   onNotice: (message: string) => void;
-  onRefresh: () => Promise<void>;
+  onRefresh: (updated?: Business) => Promise<void>;
 }) {
   const [displays, setDisplays] = useState<Page<Display> | null>(null);
   const [batches, setBatches] = useState<Batch[]>([]);
@@ -830,6 +831,12 @@ function BusinessDetail({
   const [url, setUrl] = useState(business.googleReviewUrl);
   const [editing, setEditing] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  // Sincroniza las variables locales si la prop 'business' cambia desde el padre
+  useEffect(() => {
+    setName(business.name);
+    setUrl(business.googleReviewUrl);
+  }, [business.name, business.googleReviewUrl]);
 
   async function load(page = 1) {
     setDisplays(
@@ -850,25 +857,35 @@ function BusinessDetail({
     // The selected business defines this panel instance.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [business.id]);
-
+ 
   async function save(event: FormEvent) {
     event.preventDefault();
     setBusy(true);
     try {
-      await api(`/api/businesses/${business.id}`, {
-        method: "PUT",
-        body: JSON.stringify({ name, googleReviewUrl: url }),
-      });
+      // Guardamos la respuesta actualizada de la API
+      const updatedBusiness = await api<Business>(
+        `/api/businesses/${business.id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ name, googleReviewUrl: url }),
+        },
+      );
+
+      // Sincronizamos los estados locales de los inputs
+      setName(updatedBusiness.name);
+      setUrl(updatedBusiness.googleReviewUrl);
       setEditing(false);
+
       onNotice("Local actualizado correctamente.");
-      await onRefresh();
+
+      // Le enviamos el objeto actualizado a la función onRefresh
+      await onRefresh(updatedBusiness);
     } catch {
       onNotice("No se pudo actualizar el local.");
     } finally {
       setBusy(false);
     }
   }
-
   async function setStatus(status: DisplayStatus) {
     setBusy(true);
     try {
@@ -924,7 +941,7 @@ function BusinessDetail({
       <div className="detail-heading">
         <div>
           <p className="eyebrow">DETALLE DEL LOCAL</p>
-          <h2>{business.name}</h2>
+          <h2>{name}</h2>
         </div>
         <button className="icon-button" onClick={onClose} title="Cerrar">
           <XCircle size={18} />
@@ -963,8 +980,8 @@ function BusinessDetail({
           </div>
         </form>
       ) : (
-        <div className="detail-actions">
-          <span className="muted">{business.googleReviewUrl}</span>
+          <div className="detail-actions">
+            <span className="muted">{url}</span>
           <button className="outline-button" onClick={() => setEditing(true)}>
             <Pencil size={16} /> Editar local
           </button>
