@@ -26,9 +26,9 @@ export const OrdenSection: React.FC = () => {
 
   const whatsappNumber = "50362736006";
 
-  // Lógica de precios escalonados (tiers)
+  // Lógica de precios escalonados (tiers) actualizados
   const getUnitPrice = (qty: number) => {
-    if (qty >= 5) return 19.99; // Pack Empresarial (5 a 10 pzas)
+    if (qty >= 5) return 21.99; // Pack Empresarial (5 a 10 pzas) - Actualizado
     if (qty >= 2) return 22.99; // Set Comercial (2 a 4 pzas)
     return 24.99; // Pieza Individual (1 pza)
   };
@@ -55,6 +55,7 @@ export const OrdenSection: React.FC = () => {
       return next;
     });
   };
+
   const handleWhatsApp = () => {
     const text =
       `Hola Altaria, deseo realizar mi pedido. ✨%0A%0A` +
@@ -73,9 +74,10 @@ export const OrdenSection: React.FC = () => {
 
     window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
   };
+
   const handleWhatsAppBulk = () => {
     const message = encodeURIComponent(
-      "Hola Altaria, estoy interesado en conocer el precio especial de Altaria para más de 10 unidades. ✨\n\n- Nombre del negocio:\n- Link de mi perfil de Google:",
+      "Hola Altaria, estoy interesado en conocer el precio especial de Altaria para más de 10 unidades. ✨\n\nNombre del negocio: \nLink de mi perfil de Google:"
     );
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
@@ -272,7 +274,7 @@ export const OrdenSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* OPCIÓN 3: PACK EMPRESARIAL (5 - 10 UNIDADES) */}
+                {/* OPCIÓN 3: PACK EMPRESARIAL (5 - 10 UNIDADES) - PRECIO ACTUALIZADO A $21.99 */}
                 <div
                   className={`alt-interactive-qty-box ${quantity >= 5 && quantity <= 10 ? "is-active-card" : ""}`}
                   onClick={() =>
@@ -318,7 +320,7 @@ export const OrdenSection: React.FC = () => {
                     )}
                     <div className="alt-option-price-box">
                       <span className="alt-option-price">
-                        $19.99 <small>c/u</small>
+                        $21.99 <small>c/u</small>
                       </span>
                       <span className="alt-shipping-note">+ envío</span>
                     </div>
