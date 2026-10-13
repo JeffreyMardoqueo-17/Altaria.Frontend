@@ -11,6 +11,7 @@ export function AltariaLogo({ className = "", height = 60 }: AltariaLogoProps) {
       alt="ALTARIA"
       style={{ height: `${height}px`, width: "auto" }}
       className={`object-contain ${className}`}
+      ///esto lo cmabbioe 
     />
   );
 }
